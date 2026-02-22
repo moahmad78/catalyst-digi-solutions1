@@ -13,6 +13,7 @@ const services = [
 
 export default function ServiceSidebar() {
     const pathname = usePathname();
+    const activeService = services.find(s => s.href === pathname)?.name;
 
     return (
         <div className="space-y-8 sticky top-24">
@@ -40,7 +41,7 @@ export default function ServiceSidebar() {
             </div>
 
             {/* Enrollment Form */}
-            <EnrollmentForm category="solutions" />
+            <EnrollmentForm pageType="solutions" activeService={activeService} />
         </div>
     );
 }

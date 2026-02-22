@@ -9,6 +9,7 @@ import EnrollmentForm from "@/components/EnrollmentForm";
 
 export default function TrainingSidebar() {
     const pathname = usePathname();
+    const activeProgram = trainingPrograms.find(p => `/training/${p.id}` === pathname)?.title;
 
     return (
         <aside className="lg:col-span-1 border-none bg-transparent">
@@ -38,7 +39,7 @@ export default function TrainingSidebar() {
                 </div>
 
                 {/* Enrollment Form */}
-                <EnrollmentForm category="training" />
+                <EnrollmentForm pageType="training" activeService={activeProgram} />
             </div>
         </aside>
     );
