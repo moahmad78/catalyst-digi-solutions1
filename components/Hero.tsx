@@ -79,18 +79,6 @@ export default function Hero() {
 
           {/* LEFT COLUMN: Content */}
           <div className="max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-            {/* Verified Badge */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-md mb-8 mx-auto lg:mx-0"
-            >
-              <CheckCircle className="w-4 h-4 text-blue-400 fill-blue-400/10" />
-              <span className="text-sm font-semibold text-slate-200">
-                Google Verified Partner
-              </span>
-            </motion.div>
-
             {/* Main Headline (Static) */}
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-space text-white mb-4 leading-[1.1]">
               Digital Excellence <br />

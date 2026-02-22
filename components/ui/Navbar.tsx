@@ -57,7 +57,7 @@ const Navbar = () => {
       ]
     },
     { name: "Internship", href: "/internship" },
-    { name: "Portfolio", href: "/portfolio" },
+    /* { name: "Portfolio", href: "/portfolio" }, */
     { name: "Consulting", href: "/consulting" },
     { name: "About Us", href: "/about" },
   ];

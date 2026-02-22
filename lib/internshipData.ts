@@ -67,6 +67,7 @@ export const internshipData = [
             "React Native Developer",
         ],
     },
+    /*
     {
         id: "app-development",
         title: "App Development (Flutter/React Native)",
@@ -133,6 +134,8 @@ export const internshipData = [
             "iOS/Android Developer",
         ]
     },
+    */
+    /*
     {
         id: "graphic-designing",
         title: "Graphic & UI/UX Design",
@@ -189,6 +192,7 @@ export const internshipData = [
             "Brand Strategist",
         ],
     },
+    */
     {
         id: "digital-marketing",
         title: "Digital Marketing & Strategy",

@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import ServicesShowcase from "@/components/ServicesShowcase";
 import CourseGrid from "@/components/CourseGrid";
 import BookingModal from "@/components/BookingModal";
+import FAQContactSection from "@/components/FAQContactSection";
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
@@ -190,7 +191,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Internship Programs Preview */}
+      {/* Internship Programs Preview (Commented out for now) */}
+      {/* 
       <section className="py-24 bg-slate-950 border-y border-white/5 relative overflow-hidden">
         <div className="container px-4 mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -207,6 +209,10 @@ export default function Home() {
           <CourseGrid limit={3} />
         </div>
       </section>
+      */}
+
+      {/* Combned FAQ & Contact Us Section */}
+      <FAQContactSection />
 
       {/* Why Choose Us (About) Section */}
       <section className="py-32 bg-slate-900/30 relative overflow-hidden">
