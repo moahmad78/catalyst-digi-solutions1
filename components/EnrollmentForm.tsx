@@ -8,9 +8,53 @@ interface EnrollmentFormProps {
     category?: "solutions" | "training"; // Made optional to allow default via state if needed
 }
 
+const serviceContentMap: Record<string, { title: string; placeholder: string }> = {
+    // Training Options
+    "virtual-office": {
+        title: "Virtual Office Training Enrollment",
+        placeholder: "Tell us about your background and why you want to join our virtual office training..."
+    },
+    "software-training": {
+        title: "Software Training Enrollment",
+        placeholder: "What software skills are you looking to master?"
+    },
+    "digital-marketing-training": {
+        title: "Digital Marketing Training Enrollment",
+        placeholder: "What are your goals in digital marketing?"
+    },
+    // Solutions Options
+    "digital-marketing": {
+        title: "Digital Marketing Inquiry",
+        placeholder: "Tell us about your target audience and marketing goals..."
+    },
+    "digital-transformations": {
+        title: "Digital Transformation Inquiry",
+        placeholder: "Describe the processes you want to digitize or improve..."
+    },
+    "data-management": {
+        title: "Data Management Inquiry",
+        placeholder: "What are your data challenges and how can we help?"
+    }
+};
+
 export default function EnrollmentForm({ category = "training" }: EnrollmentFormProps) {
     // Dynamic State for Form Category
     const [formCategory, setFormCategory] = useState<"solutions" | "training">(category);
+
+    // Dynamic State for Selected Service
+    const [selectedService, setSelectedService] = useState<string>("");
+
+    const handleCategoryChange = (newCategory: "solutions" | "training") => {
+        setFormCategory(newCategory);
+        setSelectedService(""); // Reset selected service when switching tabs
+    };
+
+    const content = selectedService && serviceContentMap[selectedService]
+        ? serviceContentMap[selectedService]
+        : {
+            title: formCategory === "training" ? "Enrollment Application" : "Project Inquiry",
+            placeholder: formCategory === "training" ? "Tell us about your goals..." : "Tell us about your project requirements..."
+        };
 
     const staggerContainer = {
         hidden: { opacity: 0 },
@@ -34,9 +78,18 @@ export default function EnrollmentForm({ category = "training" }: EnrollmentForm
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary/10 rounded-full blur-[40px] pointer-events-none" />
 
             <div className="relative z-10 mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2 font-space">
-                    {formCategory === "training" ? "Enrollment Application" : "Project Inquiry"}
-                </h3>
+                <AnimatePresence mode="wait">
+                    <motion.h3
+                        key={content.title}
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-2xl font-bold text-white mb-2 font-space"
+                    >
+                        {content.title}
+                    </motion.h3>
+                </AnimatePresence>
                 <p className="text-slate-400 text-sm">
                     {formCategory === "training"
                         ? "Ready to start your journey? Fill out the form below to enroll."
@@ -48,20 +101,20 @@ export default function EnrollmentForm({ category = "training" }: EnrollmentForm
             <div className="relative z-10 flex bg-slate-900/50 p-1.5 rounded-2xl mb-8 border border-white/5">
                 <button
                     type="button"
-                    onClick={() => setFormCategory("training")}
+                    onClick={() => handleCategoryChange("training")}
                     className={`flex-1 py-2.5 text-sm font-bold rounded-xl transition-all duration-300 ${formCategory === "training"
-                            ? "bg-primary text-white shadow-lg shadow-primary/25"
-                            : "text-slate-400 hover:text-white hover:bg-white/5"
+                        ? "bg-primary text-white shadow-lg shadow-primary/25"
+                        : "text-slate-400 hover:text-white hover:bg-white/5"
                         }`}
                 >
                     Training
                 </button>
                 <button
                     type="button"
-                    onClick={() => setFormCategory("solutions")}
+                    onClick={() => handleCategoryChange("solutions")}
                     className={`flex-1 py-2.5 text-sm font-bold rounded-xl transition-all duration-300 ${formCategory === "solutions"
-                            ? "bg-secondary text-white shadow-lg shadow-secondary/25"
-                            : "text-slate-400 hover:text-white hover:bg-white/5"
+                        ? "bg-secondary text-white shadow-lg shadow-secondary/25"
+                        : "text-slate-400 hover:text-white hover:bg-white/5"
                         }`}
                 >
                     Digital Solutions
@@ -150,11 +203,16 @@ export default function EnrollmentForm({ category = "training" }: EnrollmentForm
                                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none z-10">
                                         <BookOpen className="h-4 w-4 text-slate-500" />
                                     </div>
-                                    <select required defaultValue="" className="w-full bg-slate-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm md:text-base appearance-none relative z-0">
+                                    <select
+                                        required
+                                        value={selectedService}
+                                        onChange={(e) => setSelectedService(e.target.value)}
+                                        className="w-full bg-slate-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-sm md:text-base appearance-none relative z-0"
+                                    >
                                         <option value="" disabled hidden className="text-slate-600">Select a program</option>
-                                        <option value="full-stack" className="bg-slate-900">Full Stack Web Development</option>
-                                        <option value="app-dev" className="bg-slate-900">App Development</option>
-                                        <option value="ui-ux" className="bg-slate-900">Graphic & UI/UX Design</option>
+                                        <option value="virtual-office" className="bg-slate-900">Virtual Office Trainings</option>
+                                        <option value="software-training" className="bg-slate-900">Software Training</option>
+                                        <option value="digital-marketing-training" className="bg-slate-900">Digital Marketing Training</option>
                                     </select>
                                 </div>
                             </div>
@@ -193,7 +251,12 @@ export default function EnrollmentForm({ category = "training" }: EnrollmentForm
                                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none z-10">
                                         <Briefcase className="h-4 w-4 text-slate-500" />
                                     </div>
-                                    <select required defaultValue="" className="w-full bg-slate-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all text-sm md:text-base appearance-none relative z-0">
+                                    <select
+                                        required
+                                        value={selectedService}
+                                        onChange={(e) => setSelectedService(e.target.value)}
+                                        className="w-full bg-slate-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all text-sm md:text-base appearance-none relative z-0"
+                                    >
                                         <option value="" disabled hidden className="text-slate-600">Select a service</option>
                                         <option value="digital-marketing" className="bg-slate-900">Digital Marketing</option>
                                         <option value="digital-transformations" className="bg-slate-900">Digital Transformations</option>
@@ -214,11 +277,18 @@ export default function EnrollmentForm({ category = "training" }: EnrollmentForm
                         <div className="absolute top-3.5 left-0 pl-3.5 flex items-start pointer-events-none">
                             <AlignLeft className="h-4 w-4 text-slate-500" />
                         </div>
-                        <textarea
-                            rows={3}
-                            placeholder={formCategory === "training" ? "Tell us about your goals..." : "Tell us about your project requirements..."}
-                            className={`w-full bg-slate-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white placeholder:text-slate-600 focus:outline-none focus:ring-1 transition-all text-sm md:text-base resize-none ${formCategory === "training" ? "focus:border-primary focus:ring-primary" : "focus:border-secondary focus:ring-secondary"}`}
-                        />
+                        <AnimatePresence mode="wait">
+                            <motion.textarea
+                                key={content.placeholder}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                rows={3}
+                                placeholder={content.placeholder}
+                                className={`w-full bg-slate-900/50 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-white placeholder:text-slate-600 focus:outline-none focus:ring-1 transition-all text-sm md:text-base resize-none ${formCategory === "training" ? "focus:border-primary focus:ring-primary" : "focus:border-secondary focus:ring-secondary"}`}
+                            />
+                        </AnimatePresence>
                     </div>
                 </motion.div>
 
