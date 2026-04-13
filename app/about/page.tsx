@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Zap, Target, Users, Rocket, Award, ShieldCheck, Cpu, TrendingUp, Globe, Linkedin } from "lucide-react";
+import { ArrowRight, Zap, Target, Users, ShieldCheck, Cpu, TrendingUp, Globe } from "lucide-react";
 import Container from "@/components/ui/Container";
 
 export default function AboutPage() {
@@ -53,7 +53,7 @@ export default function AboutPage() {
                             </div>
 
                             <p className="text-slate-500 text-lg leading-relaxed max-w-2xl">
-                                Founded by <strong>Darshan P V</strong>, Catalyst was built to bridge the gap between enterprise complexity and agile execution. Our methodology isn't just about code—it's about engineering resilient ecosystems for growth.
+                                Founded by <strong>Darshan P V</strong>, Catalyst was built to bridge the gap between enterprise complexity and agile execution. Our methodology isn&apos;t just about code—it&apos;s about engineering resilient ecosystems for growth.
                             </p>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
@@ -139,7 +139,7 @@ export default function AboutPage() {
                             </div>
                             <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">Strategic Cohorts</h3>
                             <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-6 font-medium flex-grow">
-                                Our training programs aren't just tutorials. They are immersive, project-led incubators designed by industry veterans to build market-ready talent.
+                                Our training programs aren&apos;t just tutorials. They are immersive, project-led incubators designed by industry veterans to build market-ready talent.
                             </p>
                             <Link href="/training" className="text-slate-900 font-bold flex items-center gap-2 group/btn">
                                 Join our Cohort <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { Laptop, Code2, Briefcase, PlayCircle, BookOpen, SlidersHorizontal, GraduationCap, ArrowRight, Award, Zap, Cpu } from 'lucide-react';
+import { Laptop, Code2, Briefcase, PlayCircle, BookOpen, SlidersHorizontal, ArrowRight, Award, Zap, Cpu } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TrainingSidebar from '@/components/TrainingSidebar';
 import Container from "@/components/ui/Container";
@@ -144,7 +144,7 @@ export default function SoftwareTrainingPage() {
                                 <div>
                                     <h2 className="text-white text-3xl md:text-4xl mb-6">Built for Big Tech.</h2>
                                     <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                                        Our the 'Engineer' pipeline ensures you graduate with a deep portfolio of mission-critical production code.
+                                        Our the &apos;Engineer&apos; pipeline ensures you graduate with a deep portfolio of mission-critical production code.
                                     </p>
                                     <div className="flex flex-wrap justify-center md:justify-start gap-4">
                                         <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-white font-bold flex items-center gap-3">

@@ -6,6 +6,8 @@ import { ArrowRight, Clock } from "lucide-react";
 import * as Icons from "lucide-react";
 import { trainingPrograms } from "@/lib/training-data";
 
+const iconsMap = Icons as unknown as Record<string, React.ElementType>;
+
 export default function CourseGrid({ limit }: { limit?: number }) {
     const courses = limit ? trainingPrograms.slice(0, limit) : trainingPrograms;
 
@@ -14,7 +16,7 @@ export default function CourseGrid({ limit }: { limit?: number }) {
             {courses.map((course, index) => {
                 const isWide = index % 4 === 0 || index % 4 === 3;
                 const spanClass = isWide ? "lg:col-span-7" : "lg:col-span-5";
-                const MainIcon = (Icons as any)[course.icon] || Icons.HelpCircle;
+                const MainIcon = iconsMap[course.icon] || Icons.HelpCircle;
 
                 return (
                     <motion.div
@@ -55,7 +57,7 @@ export default function CourseGrid({ limit }: { limit?: number }) {
                             {/* Tools Preview */}
                             <div className="flex -space-x-2 overflow-hidden mb-6">
                                 {course.stack.slice(0, 4).map((tool, i) => {
-                                    const StackIcon = (Icons as any)[tool.icon] || Icons.HelpCircle;
+                                    const StackIcon = iconsMap[tool.icon] || Icons.HelpCircle;
                                     return (
                                         <div key={i} className="w-8 h-8 rounded-full bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center justify-center relative z-10" title={tool.name}>
                                             <StackIcon className="w-4 h-4 text-slate-600" />

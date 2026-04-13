@@ -6,6 +6,8 @@ import EnrollmentForm from '@/components/EnrollmentForm';
 import { motion } from 'framer-motion';
 import Container from "@/components/ui/Container";
 
+const iconsMap = Icons as unknown as Record<string, React.ElementType>;
+
 interface TrainingModule {
     title: string;
     desc: string;
@@ -36,7 +38,7 @@ const fadeIn = {
 };
 
 export default function TrainingWrapper({ data }: TrainingWrapperProps) {
-    const MainIcon = (Icons as any)[data.icon] || Icons.HelpCircle;
+    const MainIcon = iconsMap[data.icon] || Icons.HelpCircle;
 
     return (
         <div className="min-h-screen bg-white">
@@ -87,7 +89,7 @@ export default function TrainingWrapper({ data }: TrainingWrapperProps) {
                                 <h2 className="text-3xl font-bold mb-8 font-space">The <span className="text-gradient">Tech Ecosystem</span></h2>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     {data.stack.map((item, idx) => {
-                                        const StackIcon = (Icons as any)[item.icon] || Icons.HelpCircle;
+                                        const StackIcon = iconsMap[item.icon] || Icons.HelpCircle;
                                         return (
                                             <div key={idx} className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center group hover:shadow-md transition-all">
                                                 <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

@@ -144,7 +144,7 @@ export default function VirtualOfficeTrainingPage() {
                                 <div>
                                     <h2 className="text-white text-3xl md:text-4xl mb-6">Market-Ready Talent.</h2>
                                     <p className="text-slate-400 text-lg leading-relaxed mb-8">
-                                        Our the 'Career Gateway' program includes direct referrals to our global hiring partners and mock audits.
+                                        Our the &apos;Career Gateway&apos; program includes direct referrals to our global hiring partners and mock audits.
                                     </p>
                                     <div className="flex flex-wrap justify-center md:justify-start gap-4">
                                         <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-white font-bold flex items-center gap-3">

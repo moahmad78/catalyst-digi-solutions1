@@ -1,7 +1,7 @@
 "use client";
 
 import Image from 'next/image';
-import { Megaphone, TrendingUp, Search, Mail, PlayCircle, BookOpen, SlidersHorizontal, GraduationCap, ArrowRight, Award, Zap, Gauge } from 'lucide-react';
+import { Megaphone, TrendingUp, Search, Mail, PlayCircle, BookOpen, SlidersHorizontal, ArrowRight, Award, Zap, Gauge } from 'lucide-react';
 import { motion } from 'framer-motion';
 import TrainingSidebar from '@/components/TrainingSidebar';
 import Container from "@/components/ui/Container";

@@ -1,16 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Mail, Phone, MessageSquare, Send, Building2, Layers, IndianRupee, Clock, MapPin, Linkedin, Instagram, Twitter, ShieldCheck, Calendar, Facebook, ArrowRight, Zap, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { User, Mail, Phone, MessageSquare, Send, Building2, Layers, MapPin, ShieldCheck, ArrowRight, Zap, Sparkles } from "lucide-react";
 import Container from "@/components/ui/Container";
 
 export default function ContactPage() {
-    const fadeIn = {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.5 }
-    };
 
     return (
         <div className="min-h-screen bg-slate-50/50 pt-32 pb-20 relative overflow-hidden">
@@ -39,7 +33,7 @@ export default function ContactPage() {
                                 <span className="text-primary">Transformation.</span>
                             </h1>
                             <p className="text-slate-500 text-xl leading-relaxed font-medium max-w-lg">
-                                Whether you're architecting a new infrastructure or scaling a global campaign, our elite team is ready to deploy.
+                                Whether you&apos;re architecting a new infrastructure or scaling a global campaign, our elite team is ready to deploy.
                             </p>
                         </div>
 

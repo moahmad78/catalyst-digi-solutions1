@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Code, Zap, Database, Globe, Cpu, Sparkles } from "lucide-react";
+import { ArrowRight, Zap, Database, Cpu, Sparkles } from "lucide-react";
 import Container from "@/components/ui/Container";
 
 const categories = [

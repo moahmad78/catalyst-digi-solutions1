@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 
 export default function ConsultingInquiryForm({ initialService }: { initialService: string }) {
     const [isLoading, setIsLoading] = useState(false);

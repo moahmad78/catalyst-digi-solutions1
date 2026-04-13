@@ -1,4 +1,4 @@
-import { Code, Palette, Share2, Terminal, Database, Layout, Smartphone, Search, BarChart, PenTool, Monitor, Server, Briefcase } from "lucide-react";
+import { Code, Share2, Terminal, Database, Layout, Smartphone, Search, BarChart, Monitor, Briefcase } from "lucide-react";
 
 export const internshipData = [
     {

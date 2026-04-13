@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { User, Mail, Phone, AlignLeft, ArrowRight, GraduationCap, Building2, Briefcase } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FormInput, FormTextarea } from "@/components/forms/FormInput";
@@ -23,21 +23,20 @@ const serviceData = {
 type ServiceKey = keyof typeof serviceData;
 
 export default function EnrollmentFormContent({ pageType, activeService, onSuccess }: EnrollmentFormContentProps) {
-    const defaultSelection = pageType === "solutions" ? "Digital Marketing" : "Virtual Office Trainings";
-    const [selectedService, setSelectedService] = useState<ServiceKey>(defaultSelection);
-
-    useEffect(() => {
-        if (activeService && Object.keys(serviceData).includes(activeService)) {
-            setSelectedService(activeService as ServiceKey);
-        }
-    }, [activeService]);
+    const defaultSelection: ServiceKey = pageType === "solutions" ? "Digital Marketing" : "Virtual Office Trainings";
+    const selectedService: ServiceKey =
+        activeService && Object.keys(serviceData).includes(activeService)
+            ? (activeService as ServiceKey)
+            : defaultSelection;
+    const [overrideService, setOverrideService] = useState<ServiceKey | null>(null);
+    const resolvedService = overrideService ?? selectedService;
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         onSuccess();
     };
 
-    const activeData = serviceData[selectedService] || serviceData[defaultSelection];
+    const activeData = serviceData[resolvedService] || serviceData[defaultSelection];
     const isTraining = pageType === "training";
 
     return (
@@ -62,7 +61,7 @@ export default function EnrollmentFormContent({ pageType, activeService, onSucce
                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
                             <Briefcase className="h-4 w-4 text-slate-600" />
                         </div>
-                        <select required value={selectedService} onChange={(e) => setSelectedService(e.target.value as ServiceKey)} className="w-full bg-slate-50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl pl-11 pr-4 py-3 text-slate-900 focus:border-primary transition-all text-sm md:text-base appearance-none hover:border-slate-300 outline-none shadow-sm cursor-pointer">
+                        <select required value={resolvedService} onChange={(e) => setOverrideService(e.target.value as ServiceKey)} className="w-full bg-slate-50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl pl-11 pr-4 py-3 text-slate-900 focus:border-primary transition-all text-sm md:text-base appearance-none hover:border-slate-300 outline-none shadow-sm cursor-pointer">
                             {pageType === "training" && (
                                 <optgroup label="Training Options">
                                     <option value="Virtual Office Trainings">Virtual Office Trainings</option>

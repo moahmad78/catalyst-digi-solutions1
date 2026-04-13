@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import { trainingPrograms } from "@/lib/training-data";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import EnrollmentForm from "@/components/EnrollmentForm";

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { MessageCircle } from "lucide-react"; // Fallback icon if no specific brand icon
 import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
