@@ -23,7 +23,7 @@ const Logo: React.FC<LogoProps> = ({ className }) => {
                     priority
                 />
             ) : (
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/20">
+                <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center text-slate-900 font-bold text-xl shadow-lg shadow-primary/20">
                     C
                 </div>
             )}

@@ -1,124 +1,135 @@
+"use client";
+
 import Link from "next/link";
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Facebook, 
+  Twitter, 
+  Instagram, 
+  Linkedin 
+} from "lucide-react";
+import Container from "./Container";
 import Logo from "./Logo";
 
 const Footer = () => {
-    return (
-        <footer className="bg-card border-t border-border mt-auto">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    const socialLinks = [
+        { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
+        { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" },
+        { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
+        { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
+    ];
 
-                    {/* Company Info */}
-                    <div className="space-y-4 flex flex-col items-center md:items-start text-center md:text-left">
-                        <Link href="/" className="block mb-6">
-                            <Logo className="w-48 h-auto" />
-                        </Link>
-                        <p className="text-muted-foreground text-sm leading-relaxed max-w-xs md:max-w-none">
+    const solutions = [
+        { name: "Digital Marketing", href: "/solutions/digital-marketing" },
+        { name: "Digital Transformations", href: "/solutions/digital-transformation" },
+        { name: "Data Management", href: "/solutions/record-management" }
+    ];
+
+    const legal = [
+        { name: "FAQ", href: "/faq" },
+        { name: "Privacy Policy", href: "/legal/privacy-policy" },
+        { name: "Terms of Service", href: "/legal/terms" },
+        { name: "Refund Policy", href: "/legal/refund-policy" }
+    ];
+
+    return (
+        <footer className="bg-[#0B1120] text-slate-300 py-12 font-sans border-t border-slate-800">
+            <Container>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                    
+                    {/* Column 1: Logo & About */}
+                    <div className="flex flex-col">
+                        <Logo />
+                        <p className="text-slate-300 text-sm leading-relaxed mt-6">
                             Empowering businesses with ROI-based Digital Marketing, Custom App Development, and Corporate Training solutions.
                         </p>
-                        <div className="flex gap-4">
-                            <Link href="https://www.linkedin.com/company/catalyst-digi-solutions/" target="_blank" className="p-3 bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 hover:border-primary/50 transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(124,58,237,0.3)]">
-                                <Linkedin className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://www.instagram.com/darshanpv" target="_blank" className="p-3 bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 hover:border-pink-500/50 transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)]">
-                                <Instagram className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://x.com/DarshanPV" target="_blank" className="p-3 bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 hover:border-blue-400/50 transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(96,165,250,0.3)]">
-                                <Twitter className="w-5 h-5" />
-                            </Link>
-                            <Link href="https://www.facebook.com/profile.php?id=61562093013241" target="_blank" className="p-3 bg-white/5 border border-white/10 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 hover:border-blue-600/50 transition-all hover:scale-110 hover:shadow-[0_0_15px_rgba(37,99,235,0.3)]">
-                                <Facebook className="w-5 h-5" />
-                            </Link>
+                        <div className="flex items-center gap-3 mt-8">
+                            {socialLinks.map((social) => (
+                                <a
+                                    key={social.label}
+                                    href={social.href}
+                                    aria-label={social.label}
+                                    className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+                                >
+                                    {social.icon}
+                                </a>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Quick Links */}
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <h3 className="text-lg font-semibold text-foreground mb-4">Digital Solutions</h3>
-                        <ul className="space-y-2 mb-8">
-                            <li>
-                                <Link href="/solutions/digital-marketing" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    Digital Marketing
+                    {/* Column 2: Digital Solutions */}
+                    <div>
+                        <h3 className="text-white font-semibold mb-6">Digital Solutions</h3>
+                        <nav className="flex flex-col space-y-4">
+                            {solutions.map((item) => (
+                                <Link 
+                                    key={item.name}
+                                    href={item.href} 
+                                    className="text-slate-300 text-sm hover:text-white transition-colors"
+                                >
+                                    {item.name}
                                 </Link>
-                            </li>
-                            <li>
-                                <Link href="/solutions/digital-transformation" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    Digital Transformations
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/solutions/record-management" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    Data Management
-                                </Link>
-                            </li>
-                        </ul>
-
-
+                            ))}
+                        </nav>
                     </div>
 
-                    {/* Legal & Support */}
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <h3 className="text-lg font-semibold text-foreground mb-4">Legal & Support</h3>
-                        <ul className="space-y-2">
-                            <li>
-                                <Link href="/legal/faq" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    FAQ
+                    {/* Column 3: Legal & Support */}
+                    <div>
+                        <h3 className="text-white font-semibold mb-6">Legal & Support</h3>
+                        <nav className="flex flex-col space-y-4">
+                            {legal.map((item) => (
+                                <Link 
+                                    key={item.name}
+                                    href={item.href} 
+                                    className="text-slate-300 text-sm hover:text-white transition-colors"
+                                >
+                                    {item.name}
                                 </Link>
-                            </li>
-                            <li>
-                                <Link href="/legal/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    Privacy Policy
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/legal/terms" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    Terms of Service
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/legal/refund-policy" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                                    Refund Policy
-                                </Link>
-                            </li>
-                        </ul>
+                            ))}
+                        </nav>
                     </div>
 
-                    {/* Contact Info */}
-                    <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                        <h3 className="text-lg font-semibold text-foreground mb-4">Contact Us</h3>
-                        <ul className="space-y-4">
-                            <li className="flex items-start justify-center md:justify-start gap-3 text-muted-foreground text-sm">
-                                <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                                <span>
-                                    # 214, Divya Deepa, Opp to ESI Hospital,<br />
-                                    Bendoorwell, Kadri Mangalore – 575002, India
+                    {/* Column 4: Contact Us */}
+                    <div>
+                        <h3 className="text-white font-semibold mb-6">Contact Us</h3>
+                        <div className="flex flex-col space-y-4">
+                            <div className="flex items-start gap-4">
+                                <MapPin className="w-5 h-5 text-purple-500 shrink-0 mt-0.5" />
+                                <span className="text-slate-300 text-sm leading-relaxed">
+                                    # 214, Divya Deepa, Opp to ESI Hospital, Bendoorwell, Kadri Mangalore - 575002, India
                                 </span>
-                            </li>
-                            <li className="flex items-center justify-center md:justify-start gap-3 text-muted-foreground text-sm">
-                                <Phone className="w-5 h-5 text-primary shrink-0" />
-                                <a href="tel:+919880664435" className="hover:text-primary transition-colors">
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <Phone className="w-5 h-5 text-purple-500 shrink-0" />
+                                <a href="tel:+919880664435" className="text-slate-300 text-sm hover:text-white transition-colors">
                                     +91 9880664435
                                 </a>
-                            </li>
-                            <li className="flex items-center justify-center md:justify-start gap-3 text-muted-foreground text-sm">
-                                <Mail className="w-5 h-5 text-primary shrink-0" />
-                                <div className="flex flex-col">
-                                    <a href="mailto:enquiry@catalystdigisolutions.com" className="hover:text-primary transition-colors">
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <Mail className="w-5 h-5 text-purple-500 shrink-0 mt-0.5" />
+                                <div className="flex flex-col space-y-1">
+                                    <a href="mailto:enquiry@catalystdigisolutions.com" className="text-slate-300 text-sm hover:text-white transition-colors">
                                         enquiry@catalystdigisolutions.com
                                     </a>
-                                    <a href="mailto:support@catalystdigisolutions.com" className="hover:text-primary transition-colors mt-1">
+                                    <li><Link href="/solutions/record-management" className="hover:text-white transition-colors flex items-center gap-2 group"><span className="w-1.5 h-1.5 rounded-full bg-slate-800 group-hover:bg-primary transition-colors" />Data Intelligence</Link></li>
+                                    <a href="mailto:support@catalystdigisolutions.com" className="text-slate-300 text-sm hover:text-white transition-colors">
                                         support@catalystdigisolutions.com
                                     </a>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="border-t border-white/10 mt-8 py-3 flex items-center justify-center text-xs text-muted-foreground h-auto min-h-[40px]">
-                    <p>© {new Date().getFullYear()} Catalyst Digi Solutions. All rights reserved.</p>
+                {/* Bottom Copyright Bar */}
+                <div className="border-t border-slate-800 mt-12 pt-8 text-center">
+                    <p className="text-slate-400 text-sm">
+                        © 2026 Catalyst Digi Solutions. All rights reserved.
+                    </p>
                 </div>
-            </div>
+            </Container>
         </footer>
     );
 };

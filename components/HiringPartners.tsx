@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import { CheckCircle, Award, TrendingUp } from "lucide-react";
+import Container from "@/components/ui/Container";
+import { useEffect, useState } from "react";
 
 const companies = [
     { name: "Google", color: "#4285F4" },
@@ -49,56 +51,75 @@ const alumni = [
 ];
 
 export default function HiringPartners() {
-    return (
-        <section className="py-20 bg-slate-950 relative overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
+    const controls = useAnimationControls();
+    const [isPaused, setIsPaused] = useState(false);
 
-            <div className="container px-4 mx-auto relative z-10">
-                {/* 1. Stats & Statement Header */}
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-bold uppercase tracking-wider mb-6">
-                        <Award className="w-4 h-4" /> Verified Certificate Value
+    useEffect(() => {
+        if (!isPaused) {
+            controls.start({
+                x: "-50%",
+                transition: {
+                    duration: 40,
+                    ease: "linear",
+                    repeat: Infinity,
+                },
+            });
+        } else {
+            controls.stop();
+        }
+    }, [isPaused, controls]);
+
+    return (
+        <section className="py-24 bg-white relative overflow-hidden border-t border-slate-100">
+            <Container className="relative z-10">
+                {/* 1. Header */}
+                <div className="text-center mb-20">
+                    <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-bold uppercase tracking-widest mb-6">
+                        <Award className="w-4 h-4" /> Global Recognition
                     </div>
-                    <h2 className="text-3xl md:text-5xl font-bold font-space text-white mb-6">
-                        Accepted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">50+ Top Tech Companies</span>
+                    <h2 className="text-4xl md:text-5xl font-bold font-space text-slate-900 mb-6 leading-tight">
+                        Accepted by <span className="text-gradient">50+ Industry Titans.</span>
                     </h2>
-                    <p className="text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed">
-                        Our internship certificates are recognized by leading startups and MNCs, giving you a distinct edge in placements. We don&apos;t just teach; we connect you to the industry.
+                    <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
+                        Our professional training and live project certificates are recognized by leading startups and MNCs globally.
                     </p>
                 </div>
 
-                {/* 2. Infinite Logo Marquee (The Wall of Trust) */}
-                <div className="relative w-full overflow-hidden mb-20 group">
-                    <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-950 to-transparent z-10"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-950 to-transparent z-10"></div>
-
-                    <div className="flex w-full">
-                        <motion.div
-                            className="flex items-center gap-12 whitespace-nowrap"
-                            animate={{ x: ["0%", "-50%"] }}
-                            transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                        >
-                            {[...companies, ...companies].map((company, index) => (
-                                <div key={index} className="flex flex-col items-center justify-center gap-2 opacity-50 hover:opacity-100 transition-opacity cursor-default">
-                                    <div
-                                        className="text-2xl font-bold font-space px-6 py-4 rounded-xl border border-white/5 bg-white/5"
-                                        style={{ color: company.color }} // Note: In a real scenario, use SVG logos
-                                    >
-                                        {company.name}
-                                    </div>
-                                </div>
-                            ))}
-                        </motion.div>
-                    </div>
+                {/* 2. Seamless Logo Marquee */}
+                <div 
+                    className="relative w-full overflow-hidden mb-24"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                    style={{
+                        maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+                        WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+                    }}
+                >
+                    <motion.div
+                        className="flex items-center gap-16 whitespace-nowrap"
+                        animate={controls}
+                        initial={{ x: "0%" }}
+                        style={{ width: "fit-content" }}
+                    >
+                        {[...companies, ...companies, ...companies].map((company, index) => (
+                            <div key={index} className="flex flex-col items-center justify-center grayscale opacity-30 hover:opacity-100 hover:grayscale-0 transition-all duration-500 transform hover:scale-110">
+                                <span 
+                                    className="text-3xl font-bold font-space px-8 py-4 rounded-3xl border border-slate-50 shadow-sm bg-white"
+                                    style={{ color: company.color }}
+                                >
+                                    {company.name}
+                                </span>
+                            </div>
+                        ))}
+                    </motion.div>
                 </div>
 
-                {/* 3. Where Our Alumni Work Grid */}
-                <div className="text-center mb-10">
-                    <h3 className="text-2xl font-bold text-white mb-8 font-space">Recent Success Stories</h3>
+                {/* 3. Success Grid */}
+                <div className="text-center mb-12">
+                    <h3 className="text-2xl font-bold text-slate-900 font-space tracking-tight">Recent Career Breakthroughs</h3>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {alumni.map((alum, index) => (
                         <motion.div
                             key={index}
@@ -106,34 +127,35 @@ export default function HiringPartners() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-slate-900 border border-white/10 p-6 rounded-2xl hover:border-primary/50 transition-all group hover:-translate-y-1"
+                            className="bg-white border border-slate-100 shadow-premium p-8 rounded-[2.5rem] hover:border-primary/50 transition-all group hover:-translate-y-2"
                         >
                             <div className="flex flex-col items-center">
-                                <div className="relative w-20 h-20 mb-4">
+                                <div className="relative w-24 h-24 mb-6">
                                     <Image
                                         src={alum.image}
                                         alt={alum.name}
                                         fill
-                                        className="rounded-full object-cover border-4 border-slate-800 group-hover:border-primary transition-colors"
+                                        className="rounded-full object-cover border-4 border-slate-50 group-hover:border-primary transition-colors"
                                     />
-                                    <div className="absolute bottom-0 right-0 bg-green-500 rounded-full p-1 border-2 border-slate-900">
+                                    <div className="absolute bottom-1 right-1 bg-green-500 rounded-full p-1.5 border-2 border-white shadow-lg">
                                         <CheckCircle className="w-3 h-3 text-white" />
                                     </div>
                                 </div>
-                                <h4 className="text-lg font-bold text-white mb-1">{alum.name}</h4>
-                                <p className="text-xs text-slate-400 mb-4">{alum.role}</p>
+                                <h4 className="text-xl font-bold text-slate-900 mb-1">{alum.name}</h4>
+                                <p className="text-sm text-slate-500 mb-6 font-medium">{alum.role}</p>
 
-                                <div className="w-full pt-4 border-t border-white/10 flex items-center justify-between">
-                                    <span className="text-sm font-bold text-slate-300">{alum.company}</span>
-                                    <span className="text-xs font-bold text-green-400 bg-green-400/10 px-2 py-1 rounded-md flex items-center gap-1">
-                                        <TrendingUp className="w-3 h-3" /> {alum.package}
-                                    </span>
+                                <div className="w-full pt-6 border-t border-slate-50 flex items-center justify-between">
+                                    <span className="text-base font-bold text-slate-900">{alum.company}</span>
+                                    <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
+                                        <TrendingUp className="w-3.5 h-3.5" />
+                                        <span className="text-xs font-bold tracking-tight">{alum.package}</span>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

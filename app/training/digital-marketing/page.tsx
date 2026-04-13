@@ -1,13 +1,10 @@
-import { Metadata } from 'next';
-import Image from 'next/image';
-import { Megaphone, TrendingUp, Search, Mail, PlayCircle, BookOpen, SlidersHorizontal, GraduationCap } from 'lucide-react';
-import * as motion from 'framer-motion/client';
-import TrainingSidebar from '@/components/TrainingSidebar';
+"use client";
 
-export const metadata: Metadata = {
-    title: 'Digital Marketing Training | Catalyst Digi',
-    description: 'Master SEO, Social Media, and PPC. Learn to create data-driven marketing campaigns.',
-};
+import Image from 'next/image';
+import { Megaphone, TrendingUp, Search, Mail, PlayCircle, BookOpen, SlidersHorizontal, GraduationCap, ArrowRight, Award, Zap, Gauge } from 'lucide-react';
+import { motion } from 'framer-motion';
+import TrainingSidebar from '@/components/TrainingSidebar';
+import Container from "@/components/ui/Container";
 
 export default function DigitalMarketingTrainingPage() {
     const fadeIn = {
@@ -23,151 +20,149 @@ export default function DigitalMarketingTrainingPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 pt-24 pb-12">
-            <div className="container px-4 mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="min-h-screen bg-slate-50/50 pt-32 pb-20">
+            <Container>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
                     {/* Main Content (8 Cols) */}
-                    <div className="lg:col-span-8 space-y-12">
-                        {/* Hero Image */}
+                    <div className="lg:col-span-8 space-y-16">
+                        
+                        {/* 1. Cinematic Hero */}
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6 }}
-                            className="relative h-[400px] rounded-3xl overflow-hidden border border-white/10"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="relative"
                         >
-                            <Image
-                                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop"
-                                alt="Marketing Analytics"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-8">
-                                <span className="px-3 py-1 bg-secondary/20 text-secondary border border-secondary/30 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md mb-4 inline-block">
-                                    Career Accelerator
-                                </span>
-                                <h1 className="text-4xl md:text-5xl font-bold font-space text-white leading-tight">
-                                    Master Professional Excellence with Hands-on Virtual Training.
-                                </h1>
+                            <div className="aspect-[21/9] rounded-[3rem] overflow-hidden shadow-premium relative group">
+                                <Image
+                                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop"
+                                    alt="Marketing Analytics Training"
+                                    fill
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    priority
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 to-transparent" />
+                                
+                                <div className="absolute inset-0 p-10 flex flex-col justify-end">
+                                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/20 backdrop-blur-md rounded-full border border-white/20 text-white text-xs font-bold uppercase tracking-widest mb-6 w-fit">
+                                        <Megaphone className="w-4 h-4" /> Growth Track
+                                    </div>
+                                    <h1 className="text-4xl md:text-6xl font-bold font-space text-white leading-[1.1] max-w-2xl tracking-tight">
+                                        Data-Driven <br />
+                                        <span className="text-primary text-gradient">Market Dominance.</span>
+                                    </h1>
+                                </div>
                             </div>
                         </motion.div>
 
-                        {/* Main Description */}
+                        {/* 2. Abstract / Description */}
                         <motion.div
                             variants={fadeIn}
                             initial="initial"
                             whileInView="animate"
                             viewport={{ once: true }}
-                            className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm"
+                            className="card-solid p-10 md:p-14 border-l-4 border-l-primary"
                         >
-                            <p className="text-slate-300 leading-relaxed text-lg">
-                                &quot;Empower your brand with our tailored digital marketing strategies, meticulously crafted by our experts to deliver tangible results and elevate your ROI. Explore our core offerings designed to drive success and amplify your brand's impact in the digital land.&quot;
+                            <p className="text-slate-600 leading-relaxed text-xl md:text-2xl font-medium">
+                                We teach the science of high-velocity growth. Our marketing cohorts move beyond basic social media to master behavioral attribution, technical SEO, and conversion-led Lifecycle automation.
                             </p>
                         </motion.div>
 
-                        {/* Value Proposition */}
-                        <motion.div
-                            variants={fadeIn}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={{ once: true }}
-                            className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-3xl p-8 backdrop-blur-sm"
-                        >
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-indigo-500/20 rounded-xl">
-                                    <GraduationCap className="w-6 h-6 text-indigo-400" />
-                                </div>
-                                <div>
-                                    <h2 className="text-2xl font-bold text-white mb-2 font-space">Training Excellence</h2>
-                                    <p className="text-indigo-200/80 leading-relaxed">
-                                        Focus on industry-led practical learning, career transformation, and real-world project experience.
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Core Details Grid */}
+                        {/* 3. Core Modules Grid */}
                         <motion.div
                             variants={staggerContainer}
                             initial="initial"
                             whileInView="animate"
-                            viewport={{ once: true, margin: "-100px" }}
-                            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                            viewport={{ once: true }}
+                            className="grid grid-cols-1 md:grid-cols-2 gap-8"
                         >
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center text-pink-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <TrendingUp className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2">Digital Marketing</h3>
-                                <p className="text-slate-400 text-sm">Essential digital marketing strategies.</p>
-                            </motion.div>
-
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-purple-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <Megaphone className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2">Social Media</h3>
-                                <p className="text-slate-400 text-sm">Social Media Marketing.</p>
-                            </motion.div>
-
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <Search className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2">SEO</h3>
-                                <p className="text-slate-400 text-sm">Search Engine Optimization.</p>
-                            </motion.div>
-
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <Mail className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2">Email Marketing</h3>
-                                <p className="text-slate-400 text-sm">Targeted Email campaigns.</p>
-                            </motion.div>
+                            {[
+                                { title: "Growth Mechanics", icon: TrendingUp, desc: "Mastering the funnel from cold acquisition to compound organic growth.", color: "pink" },
+                                { title: "Social Authority", icon: Megaphone, desc: "Building high-intent communities and executing viral social performance.", color: "purple" },
+                                { title: "Technical SEO", icon: Search, desc: "Dominating SERPs with semantic depth and mission-critical site performance.", color: "blue" },
+                                { title: "Lifecycle Logic", icon: Mail, desc: "Automating retention with data-driven email and SMS orchestration.", color: "emerald" }
+                            ].map((item, id) => (
+                                <motion.div
+                                    key={id}
+                                    variants={fadeIn}
+                                    className="card-solid p-8 group border-transparent hover:border-slate-100"
+                                >
+                                    <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <item.icon className="w-7 h-7 text-slate-400 group-hover:text-primary transition-colors" />
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-4 tracking-tight">{item.title}</h3>
+                                    <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
+                                </motion.div>
+                            ))}
                         </motion.div>
 
-                        {/* Shared FAQ / Additional Info Section */}
-                        <section className="border-t border-white/5 pt-12">
-                            <div className="mb-8">
-                                <h2 className="text-3xl font-bold mb-2 font-space text-white">Program Information</h2>
-                                <p className="text-slate-400">Everything you need to know about our training approach.</p>
+                        {/* 4. Curriculum Depth */}
+                        <section className="space-y-12">
+                            <div className="flex items-center gap-4">
+                                <div className="w-1.5 h-10 bg-primary rounded-full" />
+                                <h2 className="text-4xl font-bold tracking-tight">The Growth Blueprint.</h2>
                             </div>
 
-                            <div className="space-y-6">
-                                <div className="bg-slate-950 border border-white/10 rounded-2xl p-6 flex gap-6 items-start">
-                                    <div className="p-3 bg-blue-500/20 rounded-xl shrink-0">
-                                        <BookOpen className="w-6 h-6 text-blue-400" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white mb-2">Program Options</h3>
-                                        <p className="text-slate-400 leading-relaxed">We offer a wide range of training programs covering topics such as digital marketing, project management, data analytics, cybersecurity, and more.</p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-slate-950 border border-white/10 rounded-2xl p-6 flex gap-6 items-start">
-                                    <div className="p-3 bg-purple-500/20 rounded-xl shrink-0">
-                                        <PlayCircle className="w-6 h-6 text-purple-400" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white mb-2">Delivery Method</h3>
-                                        <p className="text-slate-400 leading-relaxed">We offer online training options featuring interactive sessions, virtual labs, and access to course materials through our learning management system (LMS).</p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-slate-950 border border-white/10 rounded-2xl p-6 flex gap-6 items-start">
-                                    <div className="p-3 bg-emerald-500/20 rounded-xl shrink-0">
-                                        <SlidersHorizontal className="w-6 h-6 text-emerald-400" />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white mb-2">Customization</h3>
-                                        <p className="text-slate-400 leading-relaxed">We offer customizable training programs tailored to meet your specific needs and objectives.</p>
-                                    </div>
-                                </div>
+                            <div className="grid grid-cols-1 gap-8">
+                                {[
+                                    { title: "Behavioral Analytics", icon: BookOpen, desc: "Decoding user intent through heatmaps, session recording, and A/B experimental design.", color: "blue" },
+                                    { title: "Performance Paid Media", icon: PlayCircle, desc: "Scaling Google and Meta Ads with massive efficiency and proprietary bidding strategies.", color: "purple" },
+                                    { title: "Content Architecture", icon: SlidersHorizontal, desc: "Engineering content that ranks and converts using 'Information Gain' frameworks.", color: "emerald" }
+                                ].map((item, id) => (
+                                    <motion.div
+                                        key={id}
+                                        variants={fadeIn}
+                                        initial="initial"
+                                        whileInView="animate"
+                                        viewport={{ once: true }}
+                                        className="card-solid p-10 flex flex-col md:flex-row gap-10 items-center justify-between"
+                                    >
+                                        <div className="flex flex-col md:flex-row gap-8 items-center text-center md:text-left">
+                                            <div className="w-16 h-16 bg-slate-50 shadow-inner rounded-3xl flex items-center justify-center shrink-0">
+                                                <item.icon className="w-8 h-8 text-primary" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-2xl font-bold text-slate-900 mb-2">{item.title}</h3>
+                                                <p className="text-slate-500 text-base leading-relaxed max-w-xl">{item.desc}</p>
+                                            </div>
+                                        </div>
+                                        <ArrowRight className="w-8 h-8 text-slate-200 hidden md:block" />
+                                    </motion.div>
+                                ))}
                             </div>
                         </section>
+
+                        {/* 5. Success Metric Section */}
+                        <motion.div
+                            variants={fadeIn}
+                            initial="initial"
+                            whileInView="animate"
+                            viewport={{ once: true }}
+                            className="bg-slate-900 rounded-[3rem] p-12 md:p-16 relative overflow-hidden"
+                        >
+                            <div className="absolute inset-0 bg-grid-premium opacity-5 pointer-events-none" />
+                            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-center md:text-left">
+                                <div>
+                                    <h2 className="text-white text-3xl md:text-4xl mb-6">Expert Growth Hub.</h2>
+                                    <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                                        Join a cohort of data-first marketers and graduate with a portfolio of audited real-world growth results.
+                                    </p>
+                                    <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                                        <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-white font-bold flex items-center gap-3">
+                                            <Award className="w-5 h-5 text-primary" /> ROI Certification
+                                        </div>
+                                        <div className="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-white font-bold flex items-center gap-3">
+                                            <Zap className="w-5 h-5 text-secondary" /> Rapid Scaling
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-[3rem] text-center">
+                                    <Gauge className="w-12 h-12 text-primary mx-auto mb-4" />
+                                    <p className="text-white text-5xl font-bold mb-2">3.5x</p>
+                                    <p className="text-slate-400 text-xs font-bold uppercase tracking-[0.2em]">Avg. Client ROI Post-Grad</p>
+                                </div>
+                            </div>
+                        </motion.div>
 
                     </div>
 
@@ -177,7 +172,7 @@ export default function DigitalMarketingTrainingPage() {
                     </div>
 
                 </div>
-            </div>
+            </Container>
         </div>
     );
 }

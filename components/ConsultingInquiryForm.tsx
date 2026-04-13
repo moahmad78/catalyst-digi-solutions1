@@ -23,8 +23,8 @@ export default function ConsultingInquiryForm({ initialService }: { initialServi
                 <div className="w-16 h-16 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Request Received</h3>
-                <p className="text-slate-300">
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Request Received</h3>
+                <p className="text-slate-600">
                     Our strategy team will review your requirements and contact you within 24 hours to schedule your audit.
                 </p>
                 <button
@@ -46,7 +46,7 @@ export default function ConsultingInquiryForm({ initialService }: { initialServi
                         required
                         type="text"
                         placeholder="John Doe"
-                        className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        className="w-full bg-slate-900/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl px-6 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                     />
                 </div>
                 <div className="space-y-2">
@@ -55,7 +55,7 @@ export default function ConsultingInquiryForm({ initialService }: { initialServi
                         required
                         type="email"
                         placeholder="john@company.com"
-                        className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        className="w-full bg-slate-900/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl px-6 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
                     />
                 </div>
             </div>
@@ -66,7 +66,7 @@ export default function ConsultingInquiryForm({ initialService }: { initialServi
                     type="text"
                     value={initialService}
                     readOnly
-                    className="w-full bg-slate-900/30 border border-white/5 rounded-xl px-4 py-3 text-slate-400 cursor-not-allowed"
+                    className="w-full bg-slate-900/30 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl px-6 py-3 text-slate-600 cursor-not-allowed"
                 />
             </div>
 
@@ -76,14 +76,14 @@ export default function ConsultingInquiryForm({ initialService }: { initialServi
                     required
                     rows={4}
                     placeholder="Tell us about your current challenges..."
-                    className="w-full bg-slate-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
+                    className="w-full bg-slate-900/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl px-6 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
                 />
             </div>
 
             <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full bg-white text-slate-900 font-bold py-4 rounded-2xl hover:bg-slate-200 transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
                 {isLoading ? (
                     <>

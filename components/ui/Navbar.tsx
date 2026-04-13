@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Rocket } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
+import Container from "./Container";
+import GradientButton from "./GradientButton";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,11 +24,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setActiveDropdown(null);
-  }, [pathname]);
 
   const toggleDropdown = (name: string) => {
     if (activeDropdown === name) {
@@ -44,7 +41,7 @@ const Navbar = () => {
       dropdown: [
         { name: "Digital Marketing", href: "/solutions/digital-marketing" },
         { name: "Digital Transformations", href: "/solutions/digital-transformation" },
-        { name: "Data Management", href: "/solutions/record-management" },
+        { name: "Data Intelligence", href: "/solutions/record-management" },
       ],
     },
     {
@@ -56,27 +53,23 @@ const Navbar = () => {
         { name: "Digital Marketing Training", href: "/training/digital-marketing" }
       ]
     },
-    { name: "Internship", href: "/internship" },
-    /* { name: "Portfolio", href: "/portfolio" }, */
-    { name: "Consulting", href: "/consulting" },
     { name: "About Us", href: "/about" },
   ];
 
   return (
     <>
       <nav
-        className={`fixed top-4 left-0 right-0 z-[100] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300`}
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
+          scrolled
+            ? "bg-white/90 backdrop-blur-md border-b border-slate-100 py-4 shadow-xl"
+            : "bg-transparent py-6"
+        }`}
       >
-        <div
-          className={`rounded-full transition-all duration-500 border ${scrolled || isMobileMenuOpen
-            ? "bg-slate-950/70 backdrop-blur-xl border-white/10 shadow-2xl shadow-purple-500/5 py-2"
-            : "bg-transparent border-transparent py-4"
-            }`}
-        >
-          <div className="px-6 flex justify-between items-center relative z-[101]">
+        <Container>
+          <div className="flex justify-between items-center relative z-[101]">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 flex items-center group relative z-50">
-              <Logo className="text-white" />
+              <Logo className="text-slate-900" />
             </Link>
 
             {/* Desktop Navigation */}
@@ -90,11 +83,22 @@ const Navbar = () => {
                 >
                   <Link
                     href={link.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${pathname === link.href ? "text-primary" : "text-slate-300"
-                      }`}
+                    className={`text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+                      pathname === link.href
+                        ? "text-primary"
+                        : scrolled
+                        ? "text-slate-600 hover:text-primary"
+                        : "text-slate-900 hover:text-primary"
+                    }`}
                   >
                     {link.name}
-                    {link.dropdown && <ChevronDown className="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity" />}
+                    {link.dropdown && (
+                      <ChevronDown
+                        className={`w-4 h-4 opacity-70 group-hover:opacity-100 transition-all duration-300 ${
+                          activeDropdown === link.name ? "rotate-180" : ""
+                        }`}
+                      />
+                    )}
                   </Link>
 
                   {/* Dropdown Menu */}
@@ -106,21 +110,29 @@ const Navbar = () => {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 15, scale: 0.95 }}
                           transition={{ duration: 0.2, ease: "circOut" }}
-                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-64 p-2 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+                          className={`absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 p-2 shadow-2xl rounded-3xl overflow-hidden border ${
+                            scrolled
+                              ? "bg-white/95 border-slate-100"
+                              : "bg-white border-slate-100"
+                          }`}
                         >
-                          <div className="relative z-10">
+                          <div className="relative z-10 space-y-1">
                             {link.dropdown.map((item) => (
                               <Link
                                 key={item.name}
                                 href={item.href}
-                                className="block px-4 py-3 text-sm text-slate-300 hover:bg-white/5 hover:text-white rounded-xl transition-all"
+                                className={`block px-5 py-3 text-sm rounded-2xl transition-all ${
+                                  scrolled
+                                    ? "text-slate-600 hover:bg-slate-50 hover:text-primary"
+                                    : "text-slate-600 hover:bg-slate-50 hover:text-primary"
+                                }`}
                               >
                                 {item.name}
                               </Link>
                             ))}
                           </div>
                           {/* Decorative glow inside dropdown */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 z-0 pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent z-0 pointer-events-none" />
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -131,29 +143,22 @@ const Navbar = () => {
 
             {/* CTA Button */}
             <div className="hidden md:flex items-center gap-4">
-              <Link
-                href="/contact"
-                className="relative group bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-2 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <span className="relative z-10 group-hover:text-white transition-colors duration-300 flex items-center gap-2">
-                  Get Started
-                  <Rocket className="w-4 h-4" />
-                </span>
-              </Link>
+              <GradientButton text="Get Started" href="/contact" />
             </div>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center relative z-[102]">
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="text-white hover:text-primary transition-colors focus:outline-none p-2"
+                className={`transition-colors focus:outline-none p-2 rounded-xl ${
+                  scrolled ? "text-slate-900 hover:bg-slate-100" : "text-slate-900 hover:bg-slate-100"
+                }`}
               >
                 <Menu className="w-6 h-6" />
               </button>
             </div>
           </div>
-        </div>
+        </Container>
 
         {/* Side Drawer Mobile Menu */}
         <AnimatePresence>
@@ -174,14 +179,14 @@ const Navbar = () => {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="fixed top-0 right-0 h-full w-[75%] max-w-sm bg-black/95 border-l border-white/10 z-[201] shadow-2xl flex flex-col"
+                className="fixed top-0 right-0 h-full w-[75%] max-w-sm bg-white/95 border-l border-slate-200 z-[201] shadow-2xl flex flex-col"
               >
                 {/* Drawer Header */}
-                <div className="flex items-center justify-between p-6 border-b border-white/10">
-                  <Logo className="text-white scale-90 origin-left" />
+                <div className="flex items-center justify-between p-6 border-b border-slate-200">
+                  <Logo className="scale-90 origin-left" />
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-slate-400 hover:text-white transition-colors"
+                    className="p-2 text-slate-600 hover:text-slate-600 transition-colors"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -195,7 +200,7 @@ const Navbar = () => {
                         <div className="space-y-3">
                           <button
                             onClick={() => toggleDropdown(link.name)}
-                            className="flex items-center justify-between w-full text-xl font-medium text-slate-200"
+                            className="flex items-center justify-between w-full text-xl font-medium text-slate-900"
                           >
                             {link.name}
                             <ChevronDown
@@ -209,14 +214,14 @@ const Navbar = () => {
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
-                                className="pl-4 space-y-3 border-l px-4 border-white/10 ml-1"
+                                className="pl-4 space-y-3 border-l px-6 border-slate-200 ml-1"
                               >
                                 {link.dropdown.map((item) => (
                                   <Link
                                     key={item.name}
                                     href={item.href}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="block text-base text-slate-400 hover:text-white transition-colors py-1"
+                                    className="block text-base text-slate-600 hover:text-primary transition-colors py-1"
                                   >
                                     {item.name}
                                   </Link>
@@ -229,7 +234,7 @@ const Navbar = () => {
                         <Link
                           href={link.href}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block text-xl font-medium text-slate-200 hover:text-primary transition-colors"
+                          className="block text-xl font-medium text-slate-900 hover:text-primary transition-colors"
                         >
                           {link.name}
                         </Link>
@@ -239,15 +244,13 @@ const Navbar = () => {
                 </div>
 
                 {/* Drawer Footer / CTA */}
-                <div className="p-6 border-t border-white/10 bg-slate-900/50">
-                  <Link
-                    href="/contact"
+                <div className="p-8 border-t border-slate-100 bg-slate-50/50">
+                  <GradientButton 
+                    text="Get Started" 
+                    href="/contact" 
+                    className="w-full justify-center py-4"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-secondary text-white px-6 py-4 rounded-xl font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all"
-                  >
-                    Get Started
-                    <Rocket className="w-5 h-5" />
-                  </Link>
+                  />
                 </div>
               </motion.div>
             </>

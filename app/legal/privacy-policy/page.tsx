@@ -7,37 +7,37 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
     return (
-        <main className="min-h-screen pt-32 pb-24 bg-slate-950 text-slate-300">
-            <div className="container mx-auto px-4 max-w-4xl">
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-space">Privacy Policy</h1>
-                <p className="text-slate-400 mb-12">Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+        <main className="min-h-screen pt-32 pb-24 bg-white text-slate-600">
+            <div className="container mx-auto px-6 max-w-4xl">
+                <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-space">Privacy Policy</h1>
+                <p className="text-slate-600 mb-12">Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
 
-                <div className="prose prose-invert prose-lg max-w-none prose-headings:font-space prose-headings:text-white prose-a:text-primary hover:prose-a:text-primary/80">
+                <div className="prose prose-invert prose-lg max-w-none prose-headings:font-space prose-headings:text-slate-900 prose-a:text-primary hover:prose-a:text-primary/80">
                     <p>
-                        At Catalyst Digi Solutions, we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy outlines how we collect, use, and safeguard your data when you visit our website, apply for internships, or inquire about our services.
+                        At Catalyst Digi Solutions, we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy outlines how we collect, use, and safeguard your data when you visit our website or inquire about our services.
                     </p>
 
                     <h3>1. Information We Collect</h3>
                     <p>We collect information that you voluntarily provide to us, including but not limited to:</p>
                     <ul>
                         <li><strong>Personal Identification:</strong> Name, Email Address, Phone Number.</li>
-                        <li><strong>Professional Details:</strong> College/University name (for interns), Company Name (for business inquiries).</li>
-                        <li><strong>Message Content:</strong> Any details you provide in our contact or application forms.</li>
+                        <li><strong>Professional Details:</strong> Company Name and Industry (for business inquiries).</li>
+                        <li><strong>Message Content:</strong> Any details you provide in our contact or inquiry forms.</li>
                     </ul>
 
                     <h3>2. How We Use Your Information</h3>
                     <p>The information we collect is used to:</p>
                     <ul>
-                        <li>Process internship applications and communicate regarding interview schedules.</li>
                         <li>Respond to business inquiries and consultation requests.</li>
                         <li>Deliver requested services, such as digital marketing audits or software training.</li>
-                        <li>Send important updates regarding our services or policies.</li>
+                        <li>Send important library/service updates or policy changes.</li>
+                        <li>Maintain professional communication regarding project milestones.</li>
                     </ul>
 
                     <h3>3. Data Security</h3>
                     <p>
                         We implement strict security measures to ensure the safety of your personal information.
-                        For our <strong>Data Management</strong> clients, we utilize industry-standard encryption and secure protocols to protect sensitive business data. We do not sell, trade, or rent your personal identification information to others.
+                        <strong>Data Intelligence services:</strong> We may act as a data processor for the data you provide to us to manage, structure, or host. We will only process this data in accordance with your explicit instructions and legal requirements. We do not sell, trade, or rent your personal identification information to others.
                     </p>
 
                     <h3>4. Third-Party Services</h3>

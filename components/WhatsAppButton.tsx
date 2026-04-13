@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
     const phoneNumber = "919264920211";
-    const message = encodeURIComponent("Hi Buddy, I want to inquire about Catalyst Digi Solutions.");
+    const message = encodeURIComponent("Hi, I would like to inquire about the digital services offered by Catalyst Digi Solutions.");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
     return (

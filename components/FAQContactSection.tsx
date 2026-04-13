@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, Send, MapPin, Linkedin, Instagram, Twitter, Facebook, User, AtSign, MessageSquare, Briefcase, Clock, Users, Award } from "lucide-react";
+import { Plus, Minus, Send, User, AtSign, MessageSquare, Briefcase, Clock, Users, Award, GraduationCap, ShieldCheck, Zap } from "lucide-react";
 
 const faqs = [
     {
@@ -24,6 +24,11 @@ const faqs = [
         question: "Will I receive certification?",
         answer: "Yes, upon successful completion, you will receive an industry-recognized certification that highlights the live projects you contributed to.",
         icon: Award
+    },
+    {
+        question: "Do you offer placement assistance?",
+        answer: "Our 'Career Gateway' program includes resume building, mock interviews, and direct referrals to our hiring partners.",
+        icon: GraduationCap
     }
 ];
 
@@ -39,7 +44,6 @@ export default function FAQContactSection() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
         setTimeout(() => {
             setIsSubmitting(false);
             setSubmitted(true);
@@ -48,40 +52,29 @@ export default function FAQContactSection() {
         }, 1500);
     };
 
-    const socials = [
-        { icon: Linkedin, name: "LinkedIn", href: "#" },
-        { icon: Instagram, name: "Instagram", href: "#" },
-        { icon: Twitter, name: "Twitter", href: "#" },
-        { icon: Facebook, name: "Facebook", href: "#" }
-    ];
-
     return (
-        <section id="faq-contact" className="py-24 bg-slate-950 relative overflow-hidden border-t border-white/5">
-            {/* Cinematic Background Elements */}
-            <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none" />
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/3" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none translate-y-1/3 -translate-x-1/3" />
+        <section id="faq-contact" className="py-24 relative overflow-hidden bg-white border-t border-slate-50">
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[140px] pointer-events-none translate-x-1/2 -translate-y-1/2" />
+            
+            <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
 
-            <div className="container px-4 mx-auto relative z-10 max-w-7xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-
-                    {/* Left Column: FAQ */}
+                    {/* Left Column: FAQ (7 cols) */}
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="space-y-10"
+                        className="lg:col-span-7 space-y-12"
                     >
                         <div>
-                            <span className="inline-block px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary font-bold text-sm mb-6 tracking-widest uppercase shadow-lg">
-                                Sawal-Jawab
+                            <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
+                                Transparent Intelligence
                             </span>
-                            <h2 className="text-3xl md:text-5xl font-bold font-space text-white mb-6 leading-tight">
-                                Frequently Asked <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Questions</span>
+                            <h2 className="text-slate-900 leading-tight">
+                                Common <span className="text-gradient">Inquiries.</span>
                             </h2>
-                            <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
-                                Everything you need to know about our training, live projects, and mentorship programs.
+                            <p className="text-slate-500 text-xl leading-relaxed max-w-xl font-medium mt-6">
+                                Everything you need to know about our engineering methodology and market-shifting frameworks.
                             </p>
                         </div>
 
@@ -89,25 +82,25 @@ export default function FAQContactSection() {
                             {faqs.map((faq, index) => (
                                 <div
                                     key={index}
-                                    className={`border rounded-2xl transition-all duration-300 overflow-hidden ${openIndex === index
-                                        ? "bg-white/10 border-primary/50 shadow-[0_0_30px_-10px_rgba(124,58,237,0.3)]"
-                                        : "bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/[0.07]"
+                                    className={`rounded-3xl transition-all duration-500 overflow-hidden ${openIndex === index
+                                        ? "bg-slate-50 border border-primary/20 shadow-md"
+                                        : "bg-white border border-slate-100 hover:border-slate-200"
                                         }`}
                                 >
                                     <button
                                         onClick={() => toggleFAQ(index)}
-                                        className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none group"
+                                        className="w-full flex items-center justify-between p-8 text-left focus:outline-none group"
                                     >
-                                        <div className="flex items-center gap-4 pr-4">
-                                            <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${openIndex === index ? "bg-primary/20 text-primary" : "bg-slate-900 text-slate-400 group-hover:text-white"
+                                        <div className="flex items-center gap-6 pr-4">
+                                            <div className={`shrink-0 w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${openIndex === index ? "bg-primary text-white shadow-lg shadow-primary/20 rotate-12" : "bg-slate-50 text-slate-300 group-hover:text-primary"
                                                 }`}>
-                                                <faq.icon className="w-5 h-5" />
+                                                <faq.icon className="w-6 h-6" />
                                             </div>
-                                            <span className="text-lg md:text-xl font-bold text-white font-space">
+                                            <span className="text-xl font-bold text-slate-900 font-space tracking-tight leading-tight">
                                                 {faq.question}
                                             </span>
                                         </div>
-                                        <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${openIndex === index ? "bg-primary text-white" : "bg-slate-800 text-slate-400 group-hover:bg-slate-700"
+                                        <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${openIndex === index ? "bg-primary text-white scale-110" : "bg-slate-50 text-slate-300 group-hover:bg-slate-100"
                                             }`}>
                                             {openIndex === index ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                                         </div>
@@ -119,10 +112,10 @@ export default function FAQContactSection() {
                                                 initial={{ height: 0, opacity: 0 }}
                                                 animate={{ height: "auto", opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                             >
-                                                <div className="p-5 md:p-6 pt-0 text-slate-400 text-base md:text-lg leading-relaxed border-t border-white/5 mt-2">
-                                                    <div className="pl-[3.5rem] md:pl-[4.25rem]">
+                                                <div className="p-10 pt-0 text-slate-500 text-lg leading-relaxed border-t border-slate-200/50 mt-2">
+                                                    <div className="pl-16">
                                                         {faq.answer}
                                                     </div>
                                                 </div>
@@ -134,97 +127,65 @@ export default function FAQContactSection() {
                         </div>
                     </motion.div>
 
-                    {/* Right Column: Contact Us */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="flex flex-col"
-                    >
-                        <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden flex-1 flex flex-col h-full min-h-[500px]">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-[80px] pointer-events-none" />
+                    {/* Right Column: Contact Form (5 cols) */}
+                    <div className="lg:col-span-5">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="card-solid p-12 relative flex flex-col h-full bg-white"
+                        >
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/3 rounded-full blur-[80px] pointer-events-none" />
 
                             <AnimatePresence mode="wait">
                                 {!submitted ? (
                                     <motion.div
                                         key="form"
                                         initial={{ opacity: 1 }}
-                                        exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                                        transition={{ duration: 0.4 }}
+                                        exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
                                         className="flex-1 flex flex-col"
                                     >
-                                        <div className="relative z-10 mb-8">
-                                            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 font-space">Send a Message</h3>
-                                            <p className="text-slate-400 text-base md:text-lg">Ready to start? Fill out the form below.</p>
+                                        <div className="mb-12">
+                                            <h3 className="text-3xl font-bold text-slate-900 mb-4 font-space tracking-tight">Launch Project</h3>
+                                            <p className="text-slate-500 text-lg font-medium leading-relaxed">Send us a message and our partners will connect with you within 4 business hours.</p>
                                         </div>
 
-                                        <form onSubmit={handleSubmit} className="space-y-6 relative z-10 flex-1 flex flex-col">
-                                            {/* Name Input */}
-                                            <div className="space-y-2">
-                                                <label htmlFor="name" className="text-sm font-semibold text-slate-300 ml-1">Full Name</label>
-                                                <div className="relative">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <User className="w-5 h-5 text-slate-500" />
-                                                    </div>
-                                                    <input
-                                                        type="text"
-                                                        id="name"
-                                                        required
-                                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-900/50 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-base md:text-lg"
-                                                        placeholder="John Doe"
-                                                    />
-                                                </div>
+                                        <form onSubmit={handleSubmit} className="space-y-8 flex-1 flex flex-col">
+                                            <div className="relative">
+                                                <User className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    placeholder="Full Name"
+                                                    className="w-full pl-16 pr-8 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:bg-white focus:border-primary/20 transition-all text-lg text-slate-900 font-medium placeholder:text-slate-400"
+                                                />
                                             </div>
 
-                                            {/* Email Input */}
-                                            <div className="space-y-2">
-                                                <label htmlFor="email" className="text-sm font-semibold text-slate-300 ml-1">Email Address</label>
-                                                <div className="relative">
-                                                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                                        <AtSign className="w-5 h-5 text-slate-500" />
-                                                    </div>
-                                                    <input
-                                                        type="email"
-                                                        id="email"
-                                                        required
-                                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-900/50 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-base md:text-lg"
-                                                        placeholder="john@example.com"
-                                                    />
-                                                </div>
+                                            <div className="relative">
+                                                <AtSign className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
+                                                <input
+                                                    type="email"
+                                                    required
+                                                    placeholder="Work Email"
+                                                    className="w-full pl-16 pr-8 py-5 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:bg-white focus:border-primary/20 transition-all text-lg text-slate-900 font-medium placeholder:text-slate-400"
+                                                />
                                             </div>
 
-                                            {/* Message Input */}
-                                            <div className="space-y-2 flex-1 flex flex-col">
-                                                <label htmlFor="message" className="text-sm font-semibold text-slate-300 ml-1">Your Message</label>
-                                                <div className="relative flex-1 flex flex-col">
-                                                    <div className="absolute top-4 left-4 pointer-events-none">
-                                                        <MessageSquare className="w-5 h-5 text-slate-500" />
-                                                    </div>
-                                                    <textarea
-                                                        id="message"
-                                                        rows={4}
-                                                        required
-                                                        className="w-full flex-1 pl-12 pr-4 py-3.5 bg-slate-900/50 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none text-base md:text-lg"
-                                                        placeholder="How can we help you?"
-                                                    />
-                                                </div>
+                                            <div className="flex-1 min-h-[160px] relative">
+                                                <MessageSquare className="absolute left-6 top-6 w-5 h-5 text-slate-300" />
+                                                <textarea
+                                                    required
+                                                    placeholder="Brief Project Overview"
+                                                    className="w-full h-full pl-16 pr-8 py-6 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:bg-white focus:border-primary/20 transition-all text-lg text-slate-900 font-medium placeholder:text-slate-400 resize-none"
+                                                />
                                             </div>
 
-                                            {/* Submit Button */}
                                             <button
                                                 type="submit"
                                                 disabled={isSubmitting}
-                                                className="w-full py-4 px-8 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-primary/25 flex items-center justify-center gap-3 disabled:opacity-70 text-lg group mt-auto"
+                                                className="btn-primary w-full py-6 group"
                                             >
-                                                {isSubmitting ? (
-                                                    <span className="flex items-center gap-2">
-                                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                                        </svg>
-                                                        Sending...
-                                                    </span>
-                                                ) : (
+                                                {isSubmitting ? "Initiating..." : (
                                                     <>
                                                         Send Message
                                                         <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -233,72 +194,45 @@ export default function FAQContactSection() {
                                             </button>
                                         </form>
 
-                                        {/* Office & Socials Footer */}
-                                        <div className="mt-8 pt-8 border-t border-white/10 relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-                                            <div className="flex items-center gap-3 text-slate-300">
-                                                <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center shrink-0 border border-white/5 shadow-inner">
-                                                    <MapPin className="w-5 h-5 text-secondary" />
+                                        {/* Trust Section Improvement (2-Column Layout) */}
+                                        <div className="mt-12 pt-10 border-t border-slate-50 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0 border border-emerald-100 shadow-sm">
+                                                    <ShieldCheck className="w-5 h-5" />
                                                 </div>
-                                                <div className="text-sm md:text-base">
-                                                    <p className="font-bold text-white mb-0.5">Gorakhpur</p>
-                                                    <p className="text-slate-400">Uttar Pradesh, India</p>
+                                                <div>
+                                                    <p className="text-slate-900 font-bold text-sm leading-tight tracking-tight">Data Privacy</p>
+                                                    <p className="text-slate-400 text-[10px] mt-1.5 font-bold uppercase tracking-widest leading-none">Security Standard</p>
                                                 </div>
                                             </div>
-
-                                            <div className="flex gap-3">
-                                                {socials.map((social, idx) => (
-                                                    <a
-                                                        key={idx}
-                                                        href={social.href}
-                                                        className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-primary hover:border-primary transition-all hover:-translate-y-1 shadow-md"
-                                                        aria-label={social.name}
-                                                    >
-                                                        <social.icon className="w-4 h-4" />
-                                                    </a>
-                                                ))}
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 border border-blue-100 shadow-sm">
+                                                    <Zap className="w-5 h-5" />
+                                                </div>
+                                                <div>
+                                                    <p className="text-slate-900 font-bold text-sm leading-tight tracking-tight">Fast Response</p>
+                                                    <p className="text-slate-400 text-[10px] mt-1.5 font-bold uppercase tracking-widest leading-none">Under 4 Hours</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </motion.div>
                                 ) : (
-                                    // --- CINEMATIC SUCCESS MESSAGE ---
                                     <motion.div
                                         key="success"
-                                        initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
-                                        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                                        transition={{ duration: 0.5, delay: 0.1 }}
-                                        className="text-center space-y-5 px-6 relative z-10 flex-1 flex flex-col items-center justify-center w-full min-h-[400px]"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="flex-1 flex flex-col items-center justify-center text-center py-20"
                                     >
-                                        <motion.div
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
-                                            className="w-24 h-24 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-6 border border-emerald-500/20 shadow-[0_0_50px_-10px_rgba(52,211,153,0.3)]"
-                                        >
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </motion.div>
-                                        <motion.h3
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.3 }}
-                                            className="text-3xl font-bold text-white font-space"
-                                        >
-                                            Thank you!
-                                        </motion.h3>
-                                        <motion.p
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ delay: 0.4 }}
-                                            className="text-slate-400 text-lg leading-relaxed max-w-sm mx-auto"
-                                        >
-                                            Our team will connect with you soon.
-                                        </motion.p>
+                                        <div className="w-24 h-24 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mb-10 border border-emerald-500/20 shadow-xl shadow-emerald-500/10">
+                                            <Send className="w-10 h-10" />
+                                        </div>
+                                        <h3 className="text-4xl font-bold text-slate-900 tracking-tight font-space mb-4">Transmission Success</h3>
+                                        <p className="text-slate-500 text-lg max-w-xs mx-auto font-medium">Thank you for reaching out. A partner will be in touch shortly.</p>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </div>
-                    </motion.div>
+                        </motion.div>
+                    </div>
 
                 </div>
             </div>

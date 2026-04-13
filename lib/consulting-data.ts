@@ -1,4 +1,4 @@
-import { Component, ShoppingBag, Factory, TrendingUp, Users, ShieldCheck, PieChart } from "lucide-react";
+import { ShoppingBag, Factory, Users } from "lucide-react";
 
 export const consultingIndustries = [
     {

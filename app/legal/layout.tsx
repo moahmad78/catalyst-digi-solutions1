@@ -16,13 +16,13 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
     const pathname = usePathname();
 
     return (
-        <div className="min-h-screen bg-slate-950 pt-24 md:pt-32 pb-24">
-            <div className="container mx-auto px-4">
+        <div className="min-h-screen bg-white pt-24 md:pt-32 pb-24">
+            <div className="container mx-auto px-6">
                 <div className="flex flex-col md:flex-row gap-12">
                     {/* Sidebar Navigation */}
                     <aside className="md:w-64 flex-shrink-0">
                         <div className="sticky top-32 space-y-2">
-                            <h3 className="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">
+                            <h3 className="px-6 text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">
                                 Legal & Support
                             </h3>
                             {sidebarItems.map((item) => {
@@ -32,10 +32,10 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
                                         key={item.href}
                                         href={item.href}
                                         className={cn(
-                                            "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
+                                            "flex items-center gap-3 px-6 py-3 rounded-2xl text-sm font-medium transition-all duration-200",
                                             isActive
                                                 ? "bg-primary/10 text-primary border border-primary/20"
-                                                : "text-slate-400 hover:text-white hover:bg-white/5 border border-transparent"
+                                                : "text-slate-600 hover:bg-purple-50 hover:text-purple-700 transition-colors"
                                         )}
                                     >
                                         <item.icon className="w-4 h-4" />
@@ -48,7 +48,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
 
                     {/* Main Content */}
                     <main className="flex-1 min-w-0">
-                        <div className="bg-slate-900/50 border border-white/5 rounded-2xl p-8 md:p-12 backdrop-blur-sm">
+                        <div className="bg-slate-900/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl p-8 md:p-12 backdrop-blur-sm">
                             {children}
                         </div>
                     </main>

@@ -1,15 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import { Quote } from "lucide-react";
+import Container from "@/components/ui/Container";
+import { useEffect, useState } from "react";
 
 const successStories = [
     {
         name: "Aarav Patel",
         role: "Frontend Developer",
         company: "Zoho",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Zoho_Corporation_logo.png/1200px-Zoho_Corporation_logo.png", // Valid placeholder or local asset
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Zoho_Corporation_logo.png/1200px-Zoho_Corporation_logo.png",
         image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop",
         quote: "The live projects here helped me crack my interview at Zoho! I built a real CRM dashboard that impressed the interviewers."
     },
@@ -19,7 +21,7 @@ const successStories = [
         company: "Swiggy",
         companyLogo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Swiggy_logo.svg/2560px-Swiggy_logo.svg.png",
         image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop",
-        quote: "I learned to think like a designer. The portfolio I built during the internship was the key to my selection."
+        quote: "I learned to think like a designer. The portfolio I built during the training program was the key to my selection."
     },
     {
         name: "Rohan Gupta",
@@ -48,67 +50,83 @@ const successStories = [
 ];
 
 export default function SuccessStories() {
-    return (
-        <section id="real-results" className="py-24 bg-slate-950 relative overflow-hidden text-center border-t border-white/5">
-            {/* Section Header */}
-            <div className="container px-4 mx-auto mb-16 relative z-10 text-center">
-                <span className="text-secondary text-sm font-bold tracking-widest uppercase mb-2 block">Real Results</span>
-                <h2 className="text-3xl md:text-5xl font-bold font-space text-white mb-4 relative inline-block">
-                    Our Alumni are <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">Leading the Way</span>
-                </h2>
-                <p className="text-slate-400 max-w-2xl mx-auto mt-4 text-lg">
-                    Recent placements from our latest batches. Join the league of top achievers.
-                </p>
-            </div>
+    const controls = useAnimationControls();
+    const [isPaused, setIsPaused] = useState(false);
 
-            {/* Gradient Masks (CSS Version) */}
+    useEffect(() => {
+        if (!isPaused) {
+            controls.start({
+                x: "-50%",
+                transition: {
+                    duration: 50,
+                    ease: "linear",
+                    repeat: Infinity,
+                },
+            });
+        } else {
+            controls.stop();
+        }
+    }, [isPaused, controls]);
+
+    return (
+        <section id="real-results" className="py-24 bg-white relative overflow-hidden text-center border-t border-slate-100">
+            {/* Section Header */}
+            <Container className="mb-20 relative z-10 text-center">
+                <span className="text-primary text-sm font-bold tracking-[0.2em] uppercase mb-4 block">Proven Trajectories</span>
+                <h2 className="text-4xl md:text-5xl font-bold font-space text-slate-900 mb-6">
+                    Real People. <span className="text-gradient">Real Results.</span>
+                </h2>
+                <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Join the league of 500+ professionals who transformed their careers through our immersive training ecosystem.
+                </p>
+            </Container>
+
+            {/* Premium Marquee */}
             <div
                 className="relative w-full overflow-hidden"
                 style={{
-                    maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
-                    WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
+                    maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+                    WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
                 }}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
             >
-                <div className="flex overflow-hidden group">
-                    <motion.div
-                        className="flex gap-8 flex-shrink-0"
-                        animate={{ x: ["0%", "-50%"] }}
-                        transition={{
-                            repeat: Infinity,
-                            ease: "linear",
-                            duration: 40,
-                        }}
-                        style={{ width: "fit-content" }}
-                    >
-                        {[...successStories, ...successStories, ...successStories].map((story, i) => (
-                            <motion.div
-                                key={`${story.name}-${i}`}
-                                whileHover={{ scale: 1.05, borderColor: "rgba(124,58,237,0.5)" }}
-                                className="w-[400px] flex-shrink-0 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 flex flex-col items-start text-left transition-all duration-300 group/card cursor-pointer"
-                            >
-                                <div className="flex items-center gap-4 mb-6 w-full">
-                                    <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white/10 group-hover/card:border-primary transition-colors">
-                                        <Image src={story.image} alt={story.name} fill className="object-cover" />
-                                    </div>
-                                    <div className="flex-grow">
-                                        <h4 className="text-white font-bold text-lg leading-tight">{story.name}</h4>
-                                        <p className="text-slate-400 text-sm">Placed at <span className="text-white font-medium">{story.company}</span></p>
-                                    </div>
-                                    <div className="relative w-8 h-8 opacity-50 group-hover/card:opacity-100 grayscale group-hover/card:grayscale-0 transition-all duration-500">
-                                        <Image src={story.companyLogo} alt={story.company} fill className="object-contain" />
-                                    </div>
+                <motion.div
+                    className="flex gap-10 whitespace-nowrap"
+                    animate={controls}
+                    initial={{ x: "0%" }}
+                    style={{ width: "fit-content" }}
+                >
+                    {[...successStories, ...successStories, ...successStories].map((story, i) => (
+                        <motion.div
+                            key={`${story.name}-${i}`}
+                            whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                            className="w-[420px] bg-white border border-slate-100 shadow-premium rounded-[2.5rem] overflow-hidden p-10 flex flex-col items-start text-left transition-all duration-300 group/card cursor-pointer"
+                        >
+                            <div className="flex items-center gap-5 mb-8 w-full">
+                                <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-slate-50 group-hover/card:border-primary transition-colors shrink-0">
+                                    <Image src={story.image} alt={story.name} fill className="object-cover" />
                                 </div>
-
-                                <div className="relative">
-                                    <Quote className="w-8 h-8 text-white/5 absolute -top-4 -left-2 transform -scale-x-100" />
-                                    <p className="text-slate-300 text-sm leading-relaxed relative z-10 italic">
-                                        &quot;{story.quote}&quot;
+                                <div className="flex-grow">
+                                    <h4 className="text-slate-900 font-bold text-xl leading-tight">{story.name}</h4>
+                                    <p className="text-slate-500 text-sm mt-1">
+                                        Joined <span className="text-slate-900 font-bold">{story.company}</span>
                                     </p>
                                 </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
+                                <div className="relative w-10 h-10 opacity-30 group-hover/card:opacity-100 grayscale group-hover/card:grayscale-0 transition-all duration-500 shrink-0">
+                                    <Image src={story.companyLogo} alt={story.company} fill className="object-contain" />
+                                </div>
+                            </div>
+
+                            <div className="relative">
+                                <Quote className="w-10 h-10 text-primary/10 absolute -top-5 -left-4 transform -scale-x-100" />
+                                <p className="text-slate-600 text-lg leading-relaxed relative z-10 font-medium italic">
+                                    &quot;{story.quote}&quot;
+                                </p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
             </div>
         </section>
     );

@@ -3,205 +3,183 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Zap, Target, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Zap, Target, Users, Rocket, Award, ShieldCheck, Cpu, TrendingUp, Globe, Linkedin } from "lucide-react";
+import Container from "@/components/ui/Container";
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-slate-950 pt-24 pb-0 relative overflow-x-hidden">
+        <div className="min-h-screen bg-white pt-32 pb-0 relative overflow-x-hidden">
 
-            {/* 1. Hero Section (The Vision) */}
-            <section className="relative px-4 mb-32">
-                {/* Background Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-900/20 rounded-full blur-[120px] pointer-events-none" />
-
-                <div className="container mx-auto text-center relative z-10 max-w-4xl">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex flex-col items-center justify-center mb-8"
-                    >
-                        <div className="relative w-64 h-24 md:w-96 md:h-32 mb-8">
-                            <Image
-                                src="/logo.png"
-                                alt="Catalyst Digi Solutions"
-                                fill
-                                className="object-contain"
-                                priority
-                            />
-                        </div>
-                    </motion.div>
-
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-bold text-white mb-8 font-space leading-tight"
-                    >
-                        Empowering Businesses through <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Digital Transformation.</span>
-                    </motion.h1>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto"
-                    >
-                        At Catalyst Digi Solutions, we are dedicated to transforming the digital landscape for businesses of all sizes. Located in the vibrant city of Mangalore, India, we are a dynamic agency specializing in digital marketing, online training, website design, and application development.
-                    </motion.p>
-                </div>
-            </section>
-
-            {/* 2. The Foundation (Founder & Expertise) */}
-            <section className="container mx-auto px-4 mb-32 relative z-10">
-                <div className="bg-gradient-to-br from-slate-900 to-black border border-white/10 rounded-[3rem] p-8 md:p-16 overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="relative">
-                            <div className="aspect-square relative rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+         
+            {/* 2. The Strategic Philosophy (Leadership Section) */}
+            <section id="founder" className="py-24 relative overflow-hidden bg-white">
+                <Container>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                        
+                        {/* Visual Column */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="lg:col-span-5 relative"
+                        >
+                            <div className="aspect-[4/5] relative rounded-[2.5rem] overflow-hidden shadow-2xl group">
                                 <Image
-                                    src="/founder.jpg"
+                                    src="/images/founder.jpg"
                                     alt="Darshan P V"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105 filter grayscale hover:grayscale-0"
                                 />
+                                <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-700" />
                             </div>
-                            <div className="absolute -bottom-6 -right-6 bg-white text-black p-6 rounded-2xl shadow-xl max-w-xs hidden md:block">
-                                <p className="font-bold text-lg">&quot;Excellence & Innovation.&quot;</p>
-                            </div>
-                        </div>
 
-                        <div className="space-y-8">
-                            <div className="inline-block px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary font-bold text-sm tracking-widest uppercase mb-2">
-                                The Foundation
-                            </div>
-                            <h2 className="text-4xl md:text-5xl font-bold text-white font-space">Darshan P V</h2>
-                            <h3 className="text-xl text-slate-400 font-medium">Founder & CEO</h3>
+                            {/* Decorative Frame */}
+                            <div className="absolute -inset-4 border border-slate-100 rounded-[3rem] -z-10" />
+                        </motion.div>
 
-                            <p className="text-slate-300 text-lg leading-relaxed">
-                                Founded by Darshan PV, a seasoned expert with over two decades of experience in digital marketing, project management, and strategic digital transformation, Catalyst Digi Solutions stands on a foundation of excellence and innovation.
+                        {/* Text Column */}
+                        <motion.div 
+                            initial={{ opacity: 0, x: 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="lg:col-span-7 space-y-8"
+                        >
+                            <div>
+                                <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Philosophy</span>
+                                <h2 className="text-slate-900 text-4xl md:text-5xl leading-tight">
+                                    Vision Guided by <br />
+                                    <span className="text-secondary">Two Decades of Insight.</span>
+                                </h2>
+                            </div>
+
+                            <p className="text-slate-500 text-lg leading-relaxed max-w-2xl">
+                                Founded by <strong>Darshan P V</strong>, Catalyst was built to bridge the gap between enterprise complexity and agile execution. Our methodology isn't just about code—it's about engineering resilient ecosystems for growth.
                             </p>
 
-                            <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                                <h4 className="text-white font-bold mb-3 flex items-center gap-2">
-                                    <CheckCircle2 className="w-5 h-5 text-primary" /> Proven Track Record
-                                </h4>
-                                <p className="text-slate-400">
-                                    With a history of successful collaboration with esteemed organizations like <span className="text-white font-semibold">Toyota Kirloskar</span> and <span className="text-white font-semibold">Kotak Securities</span>, we bring enterprise-grade expertise to every project.
-                                </p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                                <div className="p-6 bg-slate-50/50 border border-slate-100/50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300">
+                                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                                        <TrendingUp className="w-5 h-5 text-primary" />
+                                    </div>
+                                    <h4 className="text-slate-900 font-bold text-base mb-2">Compound Growth</h4>
+                                    <p className="text-slate-500 text-xs leading-relaxed">Frameworks audited for ROI by global leaders like Toyota and Kotak Securities.</p>
+                                </div>
+                                <div className="p-6 bg-slate-50/50 border border-slate-100/50 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-300">
+                                    <div className="w-10 h-10 bg-secondary/10 rounded-xl flex items-center justify-center mb-4">
+                                        <Globe className="w-5 h-5 text-secondary" />
+                                    </div>
+                                    <h4 className="text-slate-900 font-bold text-base mb-2">Global Reach</h4>
+                                    <p className="text-slate-500 text-xs leading-relaxed">Directing digital strategies for 50+ brands across international markets.</p>
+                                </div>
                             </div>
-
-                            <div className="pt-4">
-                                <Link href="/contact" className="inline-flex items-center gap-2 text-white font-bold border-b border-primary pb-1 hover:text-primary transition-colors">
-                                    Connect on LinkedIn <ArrowRight className="w-4 h-4" />
-                                </Link>
-                            </div>
-                        </div>
+                        </motion.div>
                     </div>
-                </div>
+                </Container>
             </section>
 
-            {/* 3. Our Mission */}
-            <section className="container mx-auto px-4 mb-32 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="bg-white/5 border border-white/10 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5" />
-                    <div className="relative z-10 max-w-4xl mx-auto">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 font-space">Our Mission</h2>
-                        <p className="text-xl text-slate-300 leading-relaxed font-light">
-                            &quot;Our mission is to empower businesses to thrive in the digital age by providing strategic guidance, cutting-edge technology solutions, and top-notch training programs. We believe in the power of digital transformation to propel businesses forward.&quot;
-                        </p>
-                    </div>
-                </motion.div>
-            </section>
-
-            {/* 4. What We Offer (Services Overview) */}
-            <section className="container mx-auto px-4 mb-32">
-                <div className="text-center mb-16">
-                    <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">What We Offer</span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white font-space">Comprehensive Solutions</h2>
+            {/* 3. Our Mission (Cinematic Visual Break) */}
+            <section className="py-24 bg-slate-900 relative overflow-hidden">
+                <div className="absolute inset-0 bg-grid-premium opacity-5 pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] font-black text-white/[0.02] tracking-tighter select-none">
+                    LEGACY
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Service A */}
+                
+                <Container className="relative z-10 text-center">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-slate-900 border border-white/10 rounded-3xl p-10 hover:border-primary/50 transition-colors group"
+                        className="max-w-4xl mx-auto"
                     >
-                        <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <Zap className="w-8 h-8 text-primary" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">Digital Transformation Services</h3>
-                        <p className="text-slate-400 leading-relaxed">
-                            We specialize in developing and executing comprehensive strategies tailored to each client, from process optimization to innovative solution architecture.
+                        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-8 block">Our North Star</span>
+                        <h2 className="text-white mb-10">We believe in digital <span className="text-primary">transformation</span> as a catalyst for human hypergrowth.</h2>
+                        <p className="text-slate-400 text-xl md:text-2xl leading-relaxed italic font-light">
+                            &quot;Our mission is to empower businesses with the strategic infrastructure, elite talent, and cloud-native frameworks needed to outpace competition and thrive in the autonomous age.&quot;
                         </p>
                     </motion.div>
-
-                    {/* Service B */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        className="bg-slate-900 border border-white/10 rounded-3xl p-10 hover:border-secondary/50 transition-colors group"
-                    >
-                        <div className="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <Target className="w-8 h-8 text-secondary" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-4">Training Programs</h3>
-                        <p className="text-slate-400 leading-relaxed">
-                            Designed and delivered by industry experts, our courses equip professionals with skills in digital marketing, project management, and emerging technologies.
-                        </p>
-                    </motion.div>
-                </div>
+                </Container>
             </section>
 
-            {/* 5. Why Choose Us (Core Pillars) */}
-            <section className="container mx-auto px-4 mb-24">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white font-space">Why Choose Catalyst?</h2>
-                </div>
+            {/* 4. Core Methodology (Service Reimagined) */}
+            <section className="py-24 bg-white relative">
+                <Container>
+                    <div className="text-center mb-20">
+                        <span className="text-secondary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">The Framework</span>
+                        <h2 className="text-slate-900">How we deliver <span className="text-gradient">Precision.</span></h2>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {[
-                        {
-                            title: "Expertise",
-                            desc: "Results-driven solutions meeting business objectives.",
-                            icon: CheckCircle2
-                        },
-                        {
-                            title: "Innovation",
-                            desc: "Constantly exploring new technologies to keep clients ahead of the curve.",
-                            icon: Zap
-                        },
-                        {
-                            title: "Customer Focus",
-                            desc: "Tailored solutions where customer satisfaction is the top priority.",
-                            icon: Users
-                        }
-                    ].map((pillar, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 30 }}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
-                            className="text-center p-8 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 transition-colors"
+                            className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-100 p-6 md:p-8 flex flex-col"
                         >
-                            <div className="w-14 h-14 mx-auto bg-slate-800 rounded-full flex items-center justify-center mb-6 text-white border border-white/10">
-                                <pillar.icon className="w-6 h-6" />
+                            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-primary transition-all duration-300">
+                                <Cpu className="w-7 h-7 text-primary group-hover:text-white" />
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-3">{pillar.title}</h3>
-                            <p className="text-slate-400">{pillar.desc}</p>
+                            <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">Enterprise Systems</h3>
+                            <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-6 font-medium flex-grow">
+                                We specialize in custom application engineering and legacy system migrations that prioritize security, scalability, and seamless user experiences.
+                            </p>
+                            <Link href="/solutions" className="text-slate-900 font-bold flex items-center gap-2 group/btn">
+                                Explore Architecture <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+                            </Link>
                         </motion.div>
-                    ))}
-                </div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                            className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-slate-100 p-6 md:p-8 flex flex-col"
+                        >
+                            <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-6 group-hover:scale-105 group-hover:bg-secondary transition-all duration-300">
+                                <Target className="w-7 h-7 text-secondary group-hover:text-white" />
+                            </div>
+                            <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">Strategic Cohorts</h3>
+                            <p className="text-slate-500 text-sm md:text-base leading-relaxed mb-6 font-medium flex-grow">
+                                Our training programs aren't just tutorials. They are immersive, project-led incubators designed by industry veterans to build market-ready talent.
+                            </p>
+                            <Link href="/training" className="text-slate-900 font-bold flex items-center gap-2 group/btn">
+                                Join our Cohort <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+                            </Link>
+                        </motion.div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* 5. Differentiation (Why Catalyst) */}
+            <section className="py-24 bg-slate-50/50 relative overflow-hidden border-t border-slate-100">
+                <Container>
+                    <div className="text-center mb-16">
+                        <h2 className="text-slate-900 text-3xl md:text-5xl tracking-tight">Why Industry Leaders <span className="text-gradient">Choose Us.</span></h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {[
+                            { title: "ROI Blueprint", desc: "Data-driven logic ensuring every dollar works towards your revenue goals.", icon: TrendingUp },
+                            { title: "Cloud Native", desc: "Using the latest in edge computing and serverless for massive scale.", icon: Zap },
+                            { title: "Elite Talent", desc: "Mentorship by developers with 15+ years of production experience.", icon: Users },
+                            { title: "Sovereign Security", desc: "Bank-grade encryption protocols for all custom deployments.", icon: ShieldCheck }
+                        ].map((item, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="group bg-white p-6 md:p-8 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden"
+                            >
+                                <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center mb-5 text-primary shadow-sm border border-slate-100 group-hover:scale-105 transition-transform duration-300">
+                                    <item.icon className="w-5 h-5" />
+                                </div>
+                                <h4 className="text-slate-900 font-bold text-base md:text-lg mb-2 tracking-tight">{item.title}</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed font-medium">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </Container>
             </section>
 
         </div>

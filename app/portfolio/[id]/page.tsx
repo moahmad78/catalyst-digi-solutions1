@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, CheckCircle2, TrendingUp, Users, Zap } from "lucide-react";
 
 // Project Case Study Data
-const caseStudies = {
+export const caseStudies = {
     "lao-app": {
         id: "lao-app",
         title: "Lao App - Government Digital Transformation",
@@ -160,7 +160,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-slate-950">
+        <div className="flex flex-col min-h-screen bg-white">
             {/* Hero Section */}
             <section className="relative h-[70vh] flex items-end overflow-hidden">
                 <Image
@@ -172,8 +172,8 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
 
-                <div className="container px-4 mx-auto pb-16 relative z-10">
-                    <Link href="/portfolio" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-6 text-sm font-bold uppercase tracking-wider">
+                <div className="container px-6 mx-auto pb-16 relative z-10">
+                    <Link href="/portfolio" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-6 text-sm font-bold uppercase tracking-wider">
                         <ArrowLeft className="w-4 h-4" /> Back to Portfolio
                     </Link>
 
@@ -182,20 +182,20 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="inline-block px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-md">
+                        <span className="inline-block px-6 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-md">
                             {caseStudy.category}
                         </span>
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-space max-w-4xl">
+                        <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-4 font-space max-w-4xl">
                             {caseStudy.title}
                         </h1>
-                        <p className="text-xl text-slate-300 mb-8">Client: {caseStudy.client}</p>
+                        <p className="text-xl text-slate-600 mb-8">Client: {caseStudy.client}</p>
 
                         {caseStudy.liveUrl && (
                             <a
                                 href={caseStudy.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:scale-105 transition-transform shadow-xl"
                             >
                                 Visit Live Site <ExternalLink className="w-5 h-5" />
                             </a>
@@ -205,24 +205,24 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </section>
 
             {/* Challenge vs Solution */}
-            <section className="py-24 bg-slate-950">
-                <div className="container px-4 mx-auto">
+            <section className="py-32 bg-white">
+                <div className="container px-6 mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Challenge */}
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-red-500/5 border border-red-500/20 rounded-3xl p-8 md:p-12"
+                            className="bg-red-500/5 border border-red-500/20 rounded-[2.5rem] overflow-hidden p-8 md:p-12"
                         >
                             <div className="w-12 h-12 bg-red-500/20 text-red-500 rounded-2xl flex items-center justify-center mb-6 text-2xl font-bold">
                                 !
                             </div>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-space">{caseStudy.challenge.title}</h2>
-                            <p className="text-slate-300 mb-6 leading-relaxed">{caseStudy.challenge.description}</p>
+                            <h2 className="text-3xl font-bold text-slate-900 mb-4 font-space">{caseStudy.challenge.title}</h2>
+                            <p className="text-slate-600 mb-6 leading-relaxed">{caseStudy.challenge.description}</p>
                             <ul className="space-y-3">
                                 {caseStudy.challenge.points.map((point, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-slate-400">
+                                    <li key={idx} className="flex items-start gap-3 text-slate-600">
                                         <span className="text-red-500 mt-1">✗</span>
                                         {point}
                                     </li>
@@ -235,16 +235,16 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-emerald-500/5 border border-emerald-500/20 rounded-3xl p-8 md:p-12"
+                            className="bg-emerald-500/5 border border-emerald-500/20 rounded-[2.5rem] overflow-hidden p-8 md:p-12"
                         >
                             <div className="w-12 h-12 bg-emerald-500/20 text-emerald-500 rounded-2xl flex items-center justify-center mb-6">
                                 <CheckCircle2 className="w-6 h-6" />
                             </div>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-space">{caseStudy.solution.title}</h2>
-                            <p className="text-slate-300 mb-6 leading-relaxed">{caseStudy.solution.description}</p>
+                            <h2 className="text-3xl font-bold text-slate-900 mb-4 font-space">{caseStudy.solution.title}</h2>
+                            <p className="text-slate-600 mb-6 leading-relaxed">{caseStudy.solution.description}</p>
                             <ul className="space-y-3">
                                 {caseStudy.solution.points.map((point, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-slate-400">
+                                    <li key={idx} className="flex items-start gap-3 text-slate-600">
                                         <span className="text-emerald-500 mt-1">✓</span>
                                         {point}
                                     </li>
@@ -256,9 +256,9 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </section>
 
             {/* Tech Stack */}
-            <section className="py-20 bg-slate-900/30 border-y border-white/5">
-                <div className="container px-4 mx-auto">
-                    <h2 className="text-3xl font-bold text-white mb-12 text-center font-space">Tech Stack Used</h2>
+            <section className="py-20 bg-slate-900/30 border-y border-slate-200">
+                <div className="container px-6 mx-auto">
+                    <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center font-space">Tech Stack Used</h2>
                     <div className="flex flex-wrap justify-center gap-6">
                         {caseStudy.techStack.map((tech, idx) => (
                             <motion.div
@@ -267,10 +267,10 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="flex items-center gap-3 px-6 py-4 bg-white/5 border border-white/10 rounded-2xl hover:border-primary/50 hover:bg-white/10 transition-all"
+                                className="flex items-center gap-3 px-6 py-4 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl hover:border-primary/50 hover:bg-slate-50 transition-all"
                             >
                                 <span className="text-3xl">{tech.icon}</span>
-                                <span className="text-white font-semibold">{tech.name}</span>
+                                <span className="text-slate-900 font-semibold">{tech.name}</span>
                             </motion.div>
                         ))}
                     </div>
@@ -278,9 +278,9 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </section>
 
             {/* Key Results */}
-            <section className="py-24 bg-slate-950">
-                <div className="container px-4 mx-auto">
-                    <h2 className="text-3xl font-bold text-white mb-12 text-center font-space">Key Results</h2>
+            <section className="py-32 bg-white">
+                <div className="container px-6 mx-auto">
+                    <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center font-space">Key Results</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {caseStudy.results.map((result, idx) => (
                             <motion.div
@@ -289,11 +289,11 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="bg-gradient-to-br from-primary/10 to-secondary/10 border border-white/10 rounded-3xl p-8 text-center hover:border-primary/30 transition-all"
+                                className="bg-gradient-to-br from-primary/10 to-secondary/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-[2.5rem] overflow-hidden p-8 text-center hover:border-primary/30 transition-all"
                             >
                                 <result.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                                <div className="text-4xl font-bold text-white mb-2 font-space">{result.value}</div>
-                                <div className="text-slate-400 text-sm uppercase tracking-wider">{result.label}</div>
+                                <div className="text-4xl font-bold text-slate-900 mb-2 font-space">{result.value}</div>
+                                <div className="text-slate-600 text-sm uppercase tracking-wider">{result.label}</div>
                             </motion.div>
                         ))}
                     </div>
@@ -301,9 +301,9 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             </section>
 
             {/* Gallery */}
-            <section className="py-24 bg-slate-900/30">
-                <div className="container px-4 mx-auto">
-                    <h2 className="text-3xl font-bold text-white mb-12 text-center font-space">Project Gallery</h2>
+            <section className="py-32 bg-slate-900/30">
+                <div className="container px-6 mx-auto">
+                    <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center font-space">Project Gallery</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {caseStudy.gallery.map((image, idx) => (
                             <motion.div
@@ -312,7 +312,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className={`relative overflow-hidden rounded-3xl border border-white/10 ${idx === 0 ? 'md:col-span-2 h-96' : 'h-64'}`}
+                                className={`relative overflow-hidden rounded-[2.5rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] ${idx === 0 ? 'md:col-span-2 h-96' : 'h-64'}`}
                             >
                                 <Image
                                     src={image}
@@ -330,16 +330,16 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
             <section className="py-32 bg-gradient-to-r from-primary/10 to-secondary/10 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)] pointer-events-none" />
 
-                <div className="container px-4 mx-auto text-center relative z-10">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-space">
+                <div className="container px-6 mx-auto text-center relative z-10">
+                    <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 font-space">
                         Ready to Transform Your Business?
                     </h2>
-                    <p className="text-slate-400 text-xl mb-10 max-w-2xl mx-auto">
+                    <p className="text-slate-600 text-xl mb-10 max-w-2xl mx-auto">
                         Let&apos;s create your success story together.
                     </p>
                     <Link
                         href="/contact"
-                        className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-bold rounded-full text-lg hover:scale-105 transition-transform shadow-2xl"
+                        className="inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-900 font-bold rounded-full text-lg hover:scale-105 transition-transform shadow-2xl"
                     >
                         Start Your Project <ArrowLeft className="w-5 h-5 rotate-180" />
                     </Link>

@@ -1,136 +1,17 @@
-"use client";
+import { Metadata } from 'next';
+import { solutionsData } from '@/lib/solutions-data';
+import SolutionWrapper from '@/components/solutions/SolutionWrapper';
 
-import Image from 'next/image';
-import { Database, ShieldCheck, Scan, Zap } from 'lucide-react';
-import ServiceSidebar from '@/components/ServiceSidebar';
-import { motion } from 'framer-motion';
+export const metadata: Metadata = {
+    title: `${solutionsData["record-management"].title} | Catalyst Digi Solutions`,
+    description: solutionsData["record-management"].description,
+    openGraph: {
+        title: solutionsData["record-management"].title,
+        description: solutionsData["record-management"].description,
+        images: [solutionsData["record-management"].image],
+    }
+};
 
 export default function RecordManagementPage() {
-    const fadeIn = {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.5 }
-    };
-
-    const staggerContainer = {
-        animate: {
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    return (
-        <div className="min-h-screen bg-slate-950 pt-24 pb-12">
-            <div className="container px-4 mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-
-                    {/* Main Content (8 Cols) */}
-                    <div className="lg:col-span-8 space-y-12">
-                        {/* Hero Image */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6 }}
-                            className="relative h-[400px] rounded-3xl overflow-hidden border border-white/10"
-                        >
-                            <Image
-                                src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop"
-                                alt="Record and Data Management"
-                                fill
-                                className="object-cover"
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
-                            <div className="absolute bottom-0 left-0 p-8">
-                                <span className="px-3 py-1 bg-teal-500/20 text-teal-400 border border-teal-500/30 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-md mb-4 inline-block">
-                                    Data Security
-                                </span>
-                                <h1 className="text-4xl md:text-5xl font-bold font-space text-white leading-tight">
-                                    Revolutionizing Official Record & Data Management.
-                                </h1>
-                            </div>
-                        </motion.div>
-
-                        {/* Main Description */}
-                        <motion.div
-                            variants={fadeIn}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={{ once: true }}
-                            className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-sm"
-                        >
-                            <p className="text-slate-300 leading-relaxed text-lg">
-                                &quot;We&apos;re dedicated to revolutionizing the way businesses manage official records. Our focus is on providing high-quality services and innovative solutions for reliable growth through secure digitization.&quot;
-                            </p>
-                        </motion.div>
-
-                        {/* Value Proposition */}
-                        <motion.div
-                            variants={fadeIn}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={{ once: true }}
-                            className="bg-gradient-to-br from-teal-500/10 to-emerald-500/10 border border-teal-500/20 rounded-3xl p-8 backdrop-blur-sm"
-                        >
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 bg-teal-500/20 rounded-xl">
-                                    <Zap className="w-6 h-6 text-teal-400" />
-                                </div>
-                                <div>
-                                    <h2 className="text-2xl font-bold text-white mb-2 font-space">Focus Point</h2>
-                                    <p className="text-teal-200/80 leading-relaxed">
-                                        Transitioning from manual/physical storage to a fast, accessible, and secure digital ecosystem.
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Core Details Grid (3 Items) */}
-                        <motion.div
-                            variants={staggerContainer}
-                            initial="initial"
-                            whileInView="animate"
-                            viewport={{ once: true, margin: "-100px" }}
-                            className="grid grid-cols-1 md:grid-cols-3 gap-6"
-                        >
-                            {/* Document Scanning */}
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center text-yellow-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <Scan className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-2">Document Scanning</h3>
-                                <p className="text-slate-400 text-sm">High-speed, high-quality conversion of paper records to digital.</p>
-                            </motion.div>
-
-                            {/* Record Management */}
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-teal-500/20 rounded-xl flex items-center justify-center text-teal-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <Database className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-2">Official Record Digitization</h3>
-                                <p className="text-slate-400 text-sm">Systematic organization and management of official digital records.</p>
-                            </motion.div>
-
-                            {/* Data Security */}
-                            <motion.div variants={fadeIn} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors group">
-                                <div className="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mb-4 group-hover:scale-110 transition-transform">
-                                    <ShieldCheck className="w-6 h-6" />
-                                </div>
-                                <h3 className="text-xl font-bold text-white mb-2">Enterprise Data Security</h3>
-                                <p className="text-slate-400 text-sm">Ensuring all digitized data is stored with enterprise-grade security and reliability.</p>
-                            </motion.div>
-                        </motion.div>
-
-                    </div>
-
-                    {/* Sidebar (4 Cols) */}
-                    <div className="lg:col-span-4">
-                        <ServiceSidebar />
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    );
+    return <SolutionWrapper data={solutionsData["record-management"]} />;
 }
